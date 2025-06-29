@@ -63,12 +63,21 @@
 
   <!-- 컴포넌트 로드 -->
   <script>
-  document.querySelectorAll('[data-include]').forEach(function(el) {
+function includeHTML() {
+  var elements = document.querySelectorAll('[data-include]');
+  if (elements.length === 0) return;
+  elements.forEach(function(el) {
     fetch(el.getAttribute('data-include'))
       .then(function(res) { return res.text(); })
-      .then(function(html) { el.outerHTML = html; });
+      .then(function(html) {
+        el.outerHTML = html;
+        includeHTML();
+      });
   });
+}
+includeHTML();
 </script>
+
 
 </body>
 </html>
