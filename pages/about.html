@@ -23,21 +23,7 @@
 </head>
 <body>
   <!-- 헤더/네비게이션 -->
-  <header class="header">
-    <div class="logo">88</div>
-    <nav class="nav" id="main-nav">
-      <ul>
-        <li><a href="../index.html">홈</a></li>
-        <li><a href="about.html" class="active">소개</a></li>
-        <li><a href="projects/index.html">프로젝트</a></li>
-        <li><a href="team.html">팀</a></li>
-        <li><a href="contact.html">연락처</a></li>
-      </ul>
-    </nav>
-    <div class="hamburger menu-toggle" id="menu-toggle" aria-label="메뉴 열기/닫기">
-      <span></span><span></span><span></span>
-    </div>
-  </header>
+  <div data-include="../components/header.html"></div>
 
   <!-- 소개 페이지 메인 섹션 -->
   <main>
@@ -101,35 +87,7 @@
   </main>
 
   <!-- 푸터 -->
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <h4>88 기획 동아리</h4>
-        <p>삶에 ( )을 더하다</p>
-      </div>
-      <div>
-        <h4>링크</h4>
-        <ul>
-          <li><a href="../index.html">홈</a></li>
-          <li><a href="about.html">소개</a></li>
-          <li><a href="projects/index.html">프로젝트</a></li>
-          <li><a href="team.html">팀</a></li>
-          <li><a href="contact.html">연락처</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>연락처</h4>
-        <ul>
-          <li>Email: <a href="mailto:contact@88club.com">contact@88club.com</a></li>
-          <li>Phone: 010-1234-5678</li>
-          <li>주소: 서울시 강남구 역삼동 123-45</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2025 88 기획 동아리. All rights reserved.
-    </div>
-  </footer>
+  <div data-include="../components/footer.html"></div>
 
   <!-- 외부 라이브러리 (libs) -->
   <script src="../assets/js/libs/jquery.min.js"></script>
@@ -143,5 +101,12 @@
   <script src="../assets/js/navigation.js"></script>
   <script src="../assets/js/animations.js"></script>
   <script src="../assets/js/scroll-effects.js"></script>
+  <script>
+    document.querySelectorAll('[data-include]').forEach(el => {
+      fetch(el.getAttribute('data-include'))
+        .then(res => res.text())
+        .then(html => el.outerHTML = html);
+    });
+  </script>
 </body>
 </html>
