@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../../assets/css/components/footer.css" />
 </head>
 <body>
-  <header class="header"><div data-include="../../components/navigation.html"></div></header>
+  <div data-include="../../components/navigation.html"></div>
   <main class="section">
     <div class="container">
       <h2>프로젝트 제목</h2>
@@ -36,7 +36,7 @@
       </section>
     </div>
   </main>
-  <footer class="footer"><div data-include="../../components/footer.html"></div></footer>
+  <div data-include="../../components/footer.html"></div>
   <script>
     document.querySelectorAll('[data-include]').forEach(el => {
       fetch(el.getAttribute('data-include'))
