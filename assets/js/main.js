@@ -8,7 +8,7 @@ class App {
     this.modules = new Map();
     this.isInitialized = false;
     this.config = {
-      debug: process.env.NODE_ENV !== 'production',
+      debug: true,
       animationSpeed: 600,
       breakpoints: {
         mobile: 768,
