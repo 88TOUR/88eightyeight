@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>삶에 음을 더하다 – 음악 프로젝트</title>
+  <link rel="stylesheet" href="../../assets/css/default.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <link rel="stylesheet" href="../../assets/css/components/footer.css" />
+</head>
+<body>
+  <header class="header"><div data-include="../../components/navigation.html"></div></header>
+
+  <main class="section about-section">
+    <div class="container text-center">
+      <h2>삶에 음을 더하다</h2>
+      <p>감정 기반 개인화 음악 추천 시스템 – 현재 개발 중입니다.</p>
+      <p>릴리즈를 위해 곧 돌아오겠습니다!</p>
+    </div>
+  </main>
+
+  <footer class="footer"><div data-include="../../components/footer.html"></div></footer>
+  <script>
+    document.querySelectorAll('[data-include]').forEach(el => {
+      fetch(el.getAttribute('data-include'))
+        .then(res => res.text())
+        .then(html => el.outerHTML = html);
+    });
+  </script>
+</body>
+</html>

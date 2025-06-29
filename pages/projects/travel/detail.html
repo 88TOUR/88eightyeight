@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>삶에 쉼을 더하다 – 상세 정보</title>
+  <link rel="stylesheet" href="../../assets/css/default.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <link rel="stylesheet" href="../../assets/css/components/footer.css" />
+</head>
+<body>
+  <header class="header"><div data-include="../../components/navigation.html"></div></header>
+
+  <main class="section">
+    <div class="container">
+      <h2>삶에 쉼을 더하다</h2>
+      <p class="lead">
+        AI/ML, React, Node.js, Google Maps API를 활용해 완성한 풀스택 프로젝트입니다.
+      </p>
+      <section class="features">
+        <h3>주요 기능</h3>
+        <ul>
+          <li>개인 맞춤형 여행 코스 생성</li>
+          <li>숨은 명소 추천</li>
+          <li>실시간 날씨·교통 연동</li>
+          <li>일정 공유·협업</li>
+        </ul>
+      </section>
+      <section class="tech-stack">
+        <h3>기술 스택</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">AI/ML</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Google Maps API</span>
+        </div>
+      </section>
+      <section class="gallery">
+        <h3>갤러리</h3>
+        <div class="projects-grid">
+          <img src="../../assets/images/projects/travel/travel-hero.jpg" alt="여행 예시 1" />
+          <img src="../../assets/images/projects/travel/travel-gallery/gallery-01.jpg" alt="여행 예시 2" />
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer"><div data-include="../../components/footer.html"></div></footer>
+  <script>
+    document.querySelectorAll('[data-include]').forEach(el => {
+      fetch(el.getAttribute('data-include'))
+        .then(res => res.text())
+        .then(html => el.outerHTML = html);
+    });
+  </script>
+</body>
+</html>

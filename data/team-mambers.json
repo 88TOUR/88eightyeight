@@ -1,0 +1,47 @@
+
+[
+  {
+    "id": 1,
+    "name": "김지훈",
+    "role": "프로젝트 매니저",
+    "image": "assets/images/team/member-01.jpg",
+    "email": "jihun.kim@example.com",
+    "social": {
+      "linkedin": "https://linkedin.com/in/jihunkim",
+      "github": "https://github.com/jihunkim"
+    }
+  },
+  {
+    "id": 2,
+    "name": "이서연",
+    "role": "서비스 기획자",
+    "image": "assets/images/team/member-02.jpg",
+    "email": "seoyeon.lee@example.com",
+    "social": {
+      "linkedin": "https://linkedin.com/in/seoyeonlee",
+      "dribbble": "https://dribbble.com/seoyeonlee"
+    }
+  },
+  {
+    "id": 3,
+    "name": "박민수",
+    "role": "프론트엔드 개발자",
+    "image": "assets/images/team/member-03.jpg",
+    "email": "minspark@example.com",
+    "social": {
+      "github": "https://github.com/minspark",
+      "twitter": "https://twitter.com/minspark"
+    }
+  },
+  {
+    "id": 4,
+    "name": "최유진",
+    "role": "UI/UX 디자이너",
+    "image": "assets/images/team/member-04.jpg",
+    "email": "yujin.choi@example.com",
+    "social": {
+      "behance": "https://behance.net/yujinchoi",
+      "instagram": "https://instagram.com/yujinux"
+    }
+  }
+]

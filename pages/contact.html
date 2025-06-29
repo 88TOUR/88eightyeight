@@ -1,0 +1,73 @@
+<!-- pages/contact.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>연락하기 – 88 기획 동아리</title>
+
+  <!-- 전역 스타일 -->
+  <link rel="stylesheet" href="../assets/css/default.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+
+  <!-- 컴포넌트별 스타일 -->
+  <link rel="stylesheet" href="../assets/css/components/navigation.css" />
+  <link rel="stylesheet" href="../assets/css/components/footer.css" />
+</head>
+<body>
+  <header class="header">
+    <div data-include="../components/navigation.html"></div>
+  </header>
+
+  <main class="section contact-section">
+    <div class="container">
+      <h2 class="section-title text-center" data-animate="fade">연락하기</h2>
+      <form id="contact-form" class="section" data-animate="fade" data-delay="200">
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" required placeholder="이름을 입력하세요" />
+        </div>
+        <div class="form-group">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" required placeholder="example@domain.com" />
+        </div>
+        <div class="form-group">
+          <label for="message">문의 내용</label>
+          <textarea id="message" name="message" rows="5" required placeholder="문의하실 내용을 입력하세요"></textarea>
+        </div>
+        <button type="submit" class="btn">보내기</button>
+      </form>
+      <div class="text-center" data-animate="fade" data-delay="400">
+        <p>이메일: <a href="mailto:contact@88club.com">contact@88club.com</a></p>
+        <p>전화: 010-1234-5678</p>
+        <p>주소: 서울시 강남구 역삼동 123-45</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div data-include="../components/footer.html"></div>
+  </footer>
+
+  <!-- 외부 라이브러리 -->
+  <script src="../assets/js/libs/jquery.min.js"></script>
+  <script src="../assets/js/libs/wow.min.js"></script>
+  <script src="../assets/js/libs/slick.min.js"></script>
+  <script src="../assets/js/libs/anime.min.js"></script>
+  <script src="../assets/js/libs/particles.min.js"></script>
+  <!-- 내부 스크립트 -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/scroll-effects.js"></script>
+
+  <!-- 컴포넌트 로드 -->
+  <script>
+    document.querySelectorAll('[data-include]').forEach(el => {
+      fetch(el.getAttribute('data-include'))
+        .then(res => res.text())
+        .then(html => el.outerHTML = html);
+    });
+  </script>
+</body>
+</html>

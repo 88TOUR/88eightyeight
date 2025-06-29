@@ -1,0 +1,25 @@
+# Node.js 의존성 폴더
+node_modules/
+
+# 운영체제별 숨김 파일
+.DS_Store
+Thumbs.db
+
+# 로그 파일
+*.log
+
+# 빌드/배포 관련
+dist/
+build/
+
+# 환경설정 파일
+.env
+
+# IDE/에디터 관련
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# 기타
+*.tmp

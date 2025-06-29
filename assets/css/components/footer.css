@@ -1,0 +1,38 @@
+/* -------------------------------------------------
+   푸터
+   ------------------------------------------------- */
+footer {
+  background: var(--color-dark);
+  color: #fff;
+  padding: 3rem 0;
+}
+
+footer .footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+footer h4 {
+  font-family: var(--font-en);
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+footer ul { list-style: none; }
+footer ul li {
+  margin-bottom: .6rem;
+  font-size: .95rem;
+  color: #dfe6e9;
+}
+footer ul li a { color: inherit; transition: color .25s; }
+footer ul li a:hover { color: var(--color-secondary); }
+
+.footer-bottom {
+  margin-top: 2.2rem;
+  text-align: center;
+  font-size: .85rem;
+  color: #b2bec3;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 1.2rem;
+}

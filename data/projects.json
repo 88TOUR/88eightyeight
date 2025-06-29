@@ -1,0 +1,63 @@
+
+[
+  {
+    "id": "쉼",
+    "title": "삶에 쉼을 더하다",
+    "subtitle": "나만의 여행을 디자인하라",
+    "description": "AI 기반 맞춤형 여행 코스 추천 서비스로, 개인의 취향과 상황을 분석하여 최적의 여행 코스를 제안합니다.",
+    "features": [
+      "개인 맞춤형 여행 코스 생성",
+      "AI 기반 숨은 명소 추천",
+      "실시간 날씨 및 교통 정보 연동",
+      "여행 일정 공유 및 협업"
+    ],
+    "tech": [
+      "AI/ML",
+      "React",
+      "Node.js",
+      "Google Maps API"
+    ],
+    "status": "개발 중",
+    "image": "assets/images/projects/travel/travel-hero.jpg"
+  },
+  {
+    "id": "음",
+    "title": "삶에 음을 더하다",
+    "subtitle": "감정을 아는 음악 추천",
+    "description": "사용자의 감정 상태와 상황을 인식하여 개인화된 음악을 추천하는 지능형 음악 서비스입니다.",
+    "features": [
+      "감정 기반 음악 추천",
+      "상황별 플레이리스트 자동 생성",
+      "음악 취향 학습 알고리즘",
+      "친구와 음악 공유 기능"
+    ],
+    "tech": [
+      "Emotion AI",
+      "Spotify API",
+      "Python",
+      "TensorFlow"
+    ],
+    "status": "기획 중",
+    "image": "assets/images/projects/music/music-hero.jpg"
+  },
+  {
+    "id": "맛",
+    "title": "삶에 맛을 더하다",
+    "subtitle": "나만의 맛을 찾아서",
+    "description": "개인의 건강 정보와 취향을 고려한 맞춤형 요리 레시피 및 식당 추천 서비스입니다.",
+    "features": [
+      "건강 상태 기반 레시피 추천",
+      "냉장고 재료 활용 요리법",
+      "알레르기 정보 고려 메뉴",
+      "근처 맛집 개인화 추천"
+    ],
+    "tech": [
+      "Nutrition API",
+      "Computer Vision",
+      "Vue.js",
+      "Firebase"
+    ],
+    "status": "구상 중",
+    "image": "assets/images/projects/food/food-hero.jpg"
+  }
+]

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>삶에 쉼을 더하다 – 여행 프로젝트</title>
+  <link rel="stylesheet" href="../../assets/css/default.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <link rel="stylesheet" href="../../assets/css/components/hero.css" />
+  <link rel="stylesheet" href="../../assets/css/components/project-cards.css" />
+  <link rel="stylesheet" href="../../assets/css/components/footer.css" />
+</head>
+<body>
+  <header class="header"><div data-include="../../components/navigation.html"></div></header>
+
+  <!-- 히어로 섹션 -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>삶에 쉼을 더하다</h1>
+      <p>나만의 여행을 디자인하라</p>
+      <a href="app.html" class="btn">앱 실행하기</a>
+    </div>
+  </section>
+
+  <!-- 프로젝트 개요 -->
+  <main class="section about-section">
+    <div class="container">
+      <h2>프로젝트 개요</h2>
+      <p>
+        AI 기반의 맞춤형 여행 코스 추천 서비스로,  
+        사용자의 성향·취향·실시간 날씨·교통 정보를 분석해 최적의 여행 일정을 제안합니다.
+      </p>
+
+      <div class="stats">
+        <div class="stat-item" data-counter="5" data-duration="1500">
+          <h3>추천 코스</h3><p>5개</p>
+        </div>
+        <div class="stat-item" data-counter="3" data-duration="1500">
+          <h3>테마</h3><p>3가지</p>
+        </div>
+        <div class="stat-item" data-counter="4" data-duration="1500">
+          <h3>지원 언어</h3><p>4개</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 상세/앱 페이지로 이동 -->
+  <div class="container text-center">
+    <a href="detail.html" class="btn">프로젝트 상세 보기</a>
+    <a href="app.html" class="btn btn-secondary">앱 실행하기</a>
+  </div>
+
+  <footer class="footer"><div data-include="../../components/footer.html"></div></footer>
+
+  <script src="../../assets/js/libs/jquery.min.js"></script>
+  <script src="../../assets/js/libs/wow.min.js"></script>
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/animations.js"></script>
+  <script>
+    document.querySelectorAll('[data-include]').forEach(el => {
+      fetch(el.getAttribute('data-include'))
+        .then(res => res.text())
+        .then(html => el.outerHTML = html);
+    });
+  </script>
+</body>
+</html>

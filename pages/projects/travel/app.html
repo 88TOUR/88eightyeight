@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>여행 코스 짜기 – 88 쉼 프로젝트</title>
+  <link rel="stylesheet" href="../../assets/css/default.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <link rel="stylesheet" href="../../assets/css/components/footer.css" />
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+</head>
+<body>
+  <header class="header"><div data-include="../../components/navigation.html"></div></header>
+
+  <main class="section">
+    <div class="container">
+      <h2>나만의 여행 코스 생성</h2>
+      <form id="travel-form">
+        <div class="form-group">
+          <label for="origin">출발지</label>
+          <input type="text" id="origin" name="origin" placeholder="예: 서울역" required />
+        </div>
+        <div class="form-group">
+          <label for="interests">관심사</label>
+          <select id="interests" name="interests" multiple>
+            <option value="역사">역사</option>
+            <option value="맛집">맛집</option>
+            <option value="자연">자연</option>
+            <option value="문화">문화</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">코스 생성</button>
+      </form>
+      <div id="map" style="width:100%;height:400px;margin-top:2rem;"></div>
+    </div>
+  </main>
+
+  <footer class="footer"><div data-include="../../components/footer.html"></div></footer>
+
+  <!-- 앱 로직 -->
+  <script>
+    // 간단한 구글 맵 연동 예시
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 37.5665, lng: 126.9780 },
+        zoom: 12
+      });
+      const autocomplete = new google.maps.places.Autocomplete(document.getElementById('origin'));
+      autocomplete.bindTo('bounds', map);
+    }
+    window.initMap = initMap;
+
+    document.getElementById('travel-form').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('코스 생성 로직을 구현하세요!');
+    });
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>

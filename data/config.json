@@ -1,0 +1,25 @@
+
+{
+  "siteName": "88 기획 동아리",
+  "tagline": "삶에 ( )을 더하다",
+  "themeColors": {
+    "primary": "#6C5CE7",
+    "secondary": "#A29BFE",
+    "accent": "#FD79A8",
+    "background": "#F9F9FC"
+  },
+  "contact": {
+    "email": "contact@88club.com",
+    "phone": "010-1234-5678",
+    "address": "서울시 강남구 역삼동 123-45"
+  },
+  "themeWords": ["쉼", "음", "맛", "향", "빛", "꿈"],
+  "socialLinks": {
+    "facebook": "https://facebook.com/88club",
+    "instagram": "https://instagram.com/88club",
+    "linkedin": "https://linkedin.com/company/88club"
+  },
+  "analytics": {
+    "googleAnalyticsId": "UA-XXXXXX-X"
+  }
+}

@@ -1,0 +1,77 @@
+<!-- pages/recruitment.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>모집 안내 – 88 기획 동아리</title>
+
+  <!-- 전역 스타일 -->
+  <link rel="stylesheet" href="../assets/css/default.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link rel="stylesheet" href="../assets/css/responsive.css" />
+
+  <!-- 컴포넌트별 스타일 -->
+  <link rel="stylesheet" href="../assets/css/components/navigation.css" />
+  <link rel="stylesheet" href="../assets/css/components/footer.css" />
+</head>
+<body>
+  <header class="header">
+    <div data-include="../components/navigation.html"></div>
+  </header>
+
+  <main class="section recruitment-section">
+    <div class="container">
+      <h2 class="section-title text-center" data-animate="fade">신입 회원 모집</h2>
+      <p class="text-center" data-animate="fade" data-delay="200">
+        88 기획 동아리에서는 매 학기 새로운 열정과 아이디어를 가진 여러분을 기다립니다!
+      </p>
+
+      <section class="section" data-animate="fade" data-delay="400">
+        <h3>모집 일정</h3>
+        <ul class="recruit-list">
+          <li>지원서 접수: 2025년 7월 1일 ~ 7월 15일</li>
+          <li>면접 및 OT: 2025년 7월 20일</li>
+          <li>최종 발표: 2025년 7월 25일</li>
+        </ul>
+      </section>
+
+      <section class="section" data-animate="fade" data-delay="600">
+        <h3>지원 방법</h3>
+        <ol class="recruit-list">
+          <li>지원서 작성: 아래 버튼을 클릭하여 Google Form으로 이동</li>
+          <li>개별 면접: 서류 합격자에 한해 개별 일정 조율</li>
+          <li>OT 참석: 최종 합격자는 OT 필참</li>
+        </ol>
+        <div class="text-center">
+          <a href="https://forms.gle/your-google-form" target="_blank" class="btn">지원서 작성하기</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div data-include="../components/footer.html"></div>
+  </footer>
+
+  <!-- 외부 라이브러리 -->
+  <script src="../assets/js/libs/jquery.min.js"></script>
+  <script src="../assets/js/libs/wow.min.js"></script>
+  <script src="../assets/js/libs/slick.min.js"></script>
+  <script src="../assets/js/libs/anime.min.js"></script>
+  <script src="../assets/js/libs/particles.min.js"></script>
+  <!-- 내부 스크립트 -->
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/scroll-effects.js"></script>
+
+  <!-- 컴포넌트 로드 -->
+  <script>
+    document.querySelectorAll('[data-include]').forEach(el => {
+      fetch(el.getAttribute('data-include'))
+        .then(res => res.text())
+        .then(html => el.outerHTML = html);
+    });
+  </script>
+</body>
+</html>

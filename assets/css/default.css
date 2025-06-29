@@ -1,0 +1,70 @@
+/* -------------------------------------------------
+   기본 리셋·변수 정의
+   ------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* 브랜드 팔레트 */
+  --color-primary: #6c5ce7;     /* 메인 퍼플 */
+  --color-secondary: #a29bfe;   /* 라벤더 */
+  --color-accent: #fd79a8;      /* 핑크 하이라이트 */
+  --color-bg: #f9f9fc;          /* 밝은 배경 */
+  --color-dark: #2d3436;        /* 본문 텍스트 */
+  --color-gray: #636e72;        /* 보조 텍스트 */
+
+  /* 타이포 */
+  --font-kr: 'Noto Sans KR', sans-serif;
+  --font-en: 'Poppins', sans-serif;
+
+  /* 길이·레이아웃 */
+  --container-max: 1200px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 36px;
+  --shadow-card: 0 10px 30px rgba(0,0,0,.06);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  font-family: var(--font-kr);
+  color: var(--color-dark);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+/* 공통 유틸 */
+.container {
+  width: 90%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2.4rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 500;
+  transition: background .3s ease;
+}
+
+.btn:hover { background: var(--color-accent); }
+
+.hidden { display: none !important; }

@@ -1,0 +1,27 @@
+/* -------------------------------------------------
+   공통 애니메이션 정의
+   ------------------------------------------------- */
+
+/* 타이핑 커서 */
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 카드 3D 호버용 */
+@keyframes tilt {
+  from { transform: perspective(800px) rotateY(-5deg); }
+  to   { transform: perspective(800px) rotateY(5deg); }
+}
+
+/* 페이드 업 */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 스크롤 등장 시 지연 */
+[data-animate] { opacity: 0; }
+[data-animate].visible {
+  animation: fadeUp .8s cubic-bezier(.2,.8,.2,1) forwards;
+}

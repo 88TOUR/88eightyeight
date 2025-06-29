@@ -1,0 +1,38 @@
+/* -------------------------------------------------
+   히어로 섹션
+   ------------------------------------------------- */
+.hero {
+  position: relative;
+  padding: 10rem 0 8rem;
+  text-align: center;
+  background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero h1 span.placeholder {
+  position: relative;
+  color: var(--color-accent);
+}
+
+.hero h1 span.placeholder::after {
+  content: '';
+  position: absolute;
+  top: 0; right: -8px;
+  width: 2px; height: 100%;
+  background: var(--color-accent);
+  animation: blink 1s step-start infinite;
+}
+
+.hero p {
+  margin-top: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.hero .btn {
+  margin-top: 2.2rem;
+  background: #fff;
+  color: var(--color-primary);
+}
+
+.hero .btn:hover { background: var(--color-secondary); color: #fff; }
