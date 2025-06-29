@@ -58,11 +58,12 @@
   <script src="../../assets/js/main.js"></script>
   <script src="../../assets/js/animations.js"></script>
   <script>
-    document.querySelectorAll('[data-include]').forEach(el => {
-      fetch(el.getAttribute('data-include'))
-        .then(res => res.text())
-        .then(html => el.outerHTML = html);
-    });
-  </script>
+  document.querySelectorAll('[data-include]').forEach(function(el) {
+    fetch(el.getAttribute('data-include'))
+      .then(function(res) { return res.text(); })
+      .then(function(html) { el.outerHTML = html; });
+  });
+</script>
+
 </body>
 </html>
