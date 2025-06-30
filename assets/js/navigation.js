@@ -20,7 +20,8 @@ class Navigation {
 
   init() {
     this.bindEvents();
-    this.highlightActivePageLink();
+    this.setupSmoothScroll();
+    this.updateActiveLink();
   }
 
   /**

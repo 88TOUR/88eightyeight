@@ -1,203 +1,235 @@
 /**
- * Navigation Controller
- * 반응형 네비게이션 및 헤더 동작 관리
+ * Animations Controller
+ * 타이핑 효과, 페이드 인 등 인터랙티브 애니메이션 관리
  */
 
-class Navigation {
+class Animations {
   constructor() {
-    this.header = document.querySelector('.header');
-    this.nav = document.querySelector('.nav');
-    this.menuToggle = document.querySelector('.menu-toggle');
-    this.navLinks = document.querySelectorAll('.nav a[href^="#"]');
+    this.typingElement = document.getElementById('typed-word');
+    this.words = ['쉼', '음', '맛', '향', '빛', '꿈'];
+    this.currentWordIndex = 0;
+    this.isTyping = false;
+    this.typingSpeed = 150;
+    this.deletingSpeed = 100;
+    this.pauseTime = 2000;
     
-    this.isMenuOpen = false;
-    this.lastScrollY = window.scrollY;
-    this.scrollDirection = 'up';
-    
-    // 스로틀링을 위한 RAF ID
-    this.rafId = null;
+    // 애니메이션 상태 관리
+    this.animations = new Map();
+    this.rafCallbacks = new Set();
   }
 
   init() {
-    this.bindEvents();
-    this.setupSmoothScroll();
-    this.updateActiveLink();
+    this.startTypingAnimation();
+    this.initScrollAnimations();
+    this.setupCounterAnimations();
   }
 
   /**
-   * 이벤트 바인딩
+   * 타이핑 애니메이션 시작
    */
-  bindEvents() {
-    // 햄버거 메뉴 토글
-    this.menuToggle?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.toggleMenu();
-    });
-
-    // 메뉴 외부 클릭시 닫기
-    document.addEventListener('click', (e) => {
-      if (this.isMenuOpen && !this.nav.contains(e.target)) {
-        this.closeMenu();
-      }
-    });
-
-    // 스크롤 헤더 동작 (성능 최적화)
-    let isScrolling = false;
-    window.addEventListener('scroll', () => {
-      if (!isScrolling) {
-        requestAnimationFrame(() => {
-          this.handleScroll();
-          isScrolling = false;
-        });
-        isScrolling = true;
-      }
-    }, { passive: true });
-
-    // ESC 키로 메뉴 닫기
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.isMenuOpen) {
-        this.closeMenu();
-      }
-    });
-  }
-
-  /**
-   * 메뉴 토글
-   */
-  toggleMenu() {
-    this.isMenuOpen ? this.closeMenu() : this.openMenu();
-  }
-
-  /**
-   * 메뉴 열기
-   */
-  openMenu() {
-    this.isMenuOpen = true;
-    this.nav.classList.add('nav-open');
-    this.menuToggle.classList.add('active');
-    this.menuToggle.setAttribute('aria-expanded', 'true');
+  startTypingAnimation() {
+    if (!this.typingElement) return;
     
-    // 포커스 트래핑
-    const firstLink = this.nav.querySelector('a');
-    firstLink?.focus();
-    
-    // 바디 스크롤 방지 (모바일)
-    if (window.innerWidth <= 768) {
-      document.body.style.overflow = 'hidden';
-    }
+    this.typeWord();
   }
 
   /**
-   * 메뉴 닫기
+   * 단어 타이핑 효과
    */
-  closeMenu() {
-    this.isMenuOpen = false;
-    this.nav.classList.remove('nav-open');
-    this.menuToggle.classList.remove('active');
-    this.menuToggle.setAttribute('aria-expanded', 'false');
+  async typeWord() {
+    if (this.isTyping) return;
     
-    // 바디 스크롤 복원
-    document.body.style.overflow = '';
-  }
-
-  /**
-   * 스크롤 헤더 처리
-   */
-  handleScroll() {
-    const currentScrollY = window.scrollY;
+    this.isTyping = true;
+    const currentWord = this.words[this.currentWordIndex];
     
-    // 스크롤 방향 감지
-    if (currentScrollY > this.lastScrollY) {
-      this.scrollDirection = 'down';
-    } else if (currentScrollY < this.lastScrollY) {
-      this.scrollDirection = 'up';
+    // 타이핑 애니메이션
+    for (let i = 0; i <= currentWord.length; i++) {
+      await this.delay(this.typingSpeed);
+      this.typingElement.textContent = currentWord.slice(0, i);
     }
 
-    // 헤더 숨김/표시 (스크롤 다운시 숨김)
-    if (currentScrollY > 100) {
-      if (this.scrollDirection === 'down') {
-        this.header.classList.add('header--hidden');
-      } else {
-        this.header.classList.remove('header--hidden');
-      }
-      this.header.classList.add('header--scrolled');
-    } else {
-      this.header.classList.remove('header--hidden', 'header--scrolled');
+    // 잠시 멈춤
+    await this.delay(this.pauseTime);
+
+    // 지우기 애니메이션
+    for (let i = currentWord.length; i >= 0; i--) {
+      await this.delay(this.deletingSpeed);
+      this.typingElement.textContent = currentWord.slice(0, i);
     }
 
-    this.lastScrollY = currentScrollY;
-    this.updateActiveLink();
+    // 다음 단어로 이동
+    this.currentWordIndex = (this.currentWordIndex + 1) % this.words.length;
+    this.isTyping = false;
+    
+    // 재귀 호출로 무한 반복
+    this.typeWord();
   }
 
   /**
-   * 부드러운 스크롤 설정
+   * 지연 함수 (Promise 기반)
    */
-  setupSmoothScroll() {
-    this.navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-          const headerHeight = this.header.offsetHeight;
-          const targetOffset = targetSection.offsetTop - headerHeight - 20;
-          
-          window.scrollTo({
-            top: targetOffset,
-            behavior: 'smooth'
-          });
+  delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-          // 모바일에서 메뉴 닫기
-          if (window.innerWidth <= 768) {
-            this.closeMenu();
-          }
+  /**
+   * 스크롤 기반 애니메이션 초기화 (Intersection Observer 사용)
+   */
+  initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('[data-animate]');
+    
+    if (animatedElements.length === 0) return;
+
+    // Intersection Observer 설정 (성능 최적화)
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.triggerElementAnimation(entry.target);
+          observer.unobserve(entry.target); // 한 번만 실행
         }
+      });
+    }, observerOptions);
+
+    animatedElements.forEach(element => {
+      observer.observe(element);
+    });
+  }
+
+  /**
+   * 요소 애니메이션 트리거
+   */
+  triggerElementAnimation(element) {
+    const animationType = element.dataset.animate || 'fadeInUp';
+    const delay = parseInt(element.dataset.delay) || 0;
+    
+    setTimeout(() => {
+      element.classList.add('animate-in', `animate-${animationType}`);
+    }, delay);
+  }
+
+  /**
+   * 카운터 애니메이션 설정
+   */
+  setupCounterAnimations() {
+    const counters = document.querySelectorAll('[data-counter]');
+    
+    counters.forEach(counter => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(counter);
+    });
+  }
+
+  /**
+   * 카운터 애니메이션 실행
+   */
+  animateCounter(element) {
+    const target = parseInt(element.dataset.counter);
+    const duration = parseInt(element.dataset.duration) || 2000;
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // easeOutQuart 이징 함수
+      const easeProgress = 1 - Math.pow(1 - progress, 4);
+      const currentValue = Math.round(target * easeProgress);
+      
+      element.textContent = currentValue.toLocaleString();
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }
+
+  /**
+   * 페이드 인 애니메이션 (수동 트리거용)
+   */
+  fadeIn(element, duration = 600) {
+    return new Promise(resolve => {
+      element.style.opacity = '0';
+      element.style.transition = `opacity ${duration}ms ease`;
+      
+      requestAnimationFrame(() => {
+        element.style.opacity = '1';
+        setTimeout(resolve, duration);
       });
     });
   }
 
   /**
-   * 현재 섹션에 따른 활성 링크 업데이트
+   * 페이드 아웃 애니메이션
    */
-  updateActiveLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPos = window.scrollY + window.innerHeight / 3;
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      const correspondingLink = document.querySelector(`.nav a[href="#${sectionId}"]`);
-
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        // 모든 링크에서 active 클래스 제거
-        this.navLinks.forEach(link => link.classList.remove('active'));
-        // 현재 섹션 링크에 active 클래스 추가
-        correspondingLink?.classList.add('active');
-      }
+  fadeOut(element, duration = 600) {
+    return new Promise(resolve => {
+      element.style.transition = `opacity ${duration}ms ease`;
+      element.style.opacity = '0';
+      setTimeout(resolve, duration);
     });
   }
 
   /**
-   * 리사이즈 핸들러
+   * 슬라이드 애니메이션
    */
-  handleResize() {
-    // 데스크톱에서 모바일 메뉴 닫기
-    if (window.innerWidth > 768 && this.isMenuOpen) {
-      this.closeMenu();
+  slideToggle(element, duration = 400) {
+    if (element.style.maxHeight && element.style.maxHeight !== '0px') {
+      // 슬라이드 업
+      element.style.maxHeight = '0px';
+      element.style.overflow = 'hidden';
+    } else {
+      // 슬라이드 다운
+      element.style.maxHeight = element.scrollHeight + 'px';  
+      setTimeout(() => {
+        element.style.maxHeight = 'none';
+        element.style.overflow = 'visible';
+      }, duration);
     }
   }
 
   /**
-   * 모달 닫기 (전역 ESC 핸들러용)
+   * 애니메이션 일시정지 (페이지 숨김시)
    */
-  closeModal() {
-    if (this.isMenuOpen) {
-      this.closeMenu();
+  pause() {
+    this.isTyping = false;
+    this.rafCallbacks.clear();
+  }
+
+  /**
+   * 애니메이션 재시작
+   */
+  resume() {
+    if (!this.isTyping) {
+      this.startTypingAnimation();
     }
+  }
+
+  /**
+   * requestAnimationFrame 관리
+   */
+  addRAFCallback(callback) {
+    this.rafCallbacks.add(callback);
+  }
+
+  removeRAFCallback(callback) {
+    this.rafCallbacks.delete(callback);
   }
 }
 
 // 전역 등록
-window.Navigation = Navigation;
+window.Animations = Animations;

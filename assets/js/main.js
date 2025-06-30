@@ -130,4 +130,4 @@ class App {
 window.App88 = new App();
 
 // 자동 초기화
-// window.App88.init();
+window.App88.init();
