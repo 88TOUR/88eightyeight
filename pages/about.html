@@ -102,19 +102,46 @@
   <script src="/assets/js/animations.js"></script>
   <script src="/assets/js/scroll-effects.js"></script>
   <script>
-function includeHTML() {
-  var elements = document.querySelectorAll('[data-include]');
-  if (elements.length === 0) return;
-  elements.forEach(function(el) {
-    fetch(el.getAttribute('data-include'))
-      .then(function(res) { return res.text(); })
-      .then(function(html) {
-        el.outerHTML = html;
-        includeHTML();
+function includeHTML(callback) {
+  const elements = document.querySelectorAll('[data-include]');
+  let loaded = 0;
+  if (elements.length === 0) {
+    callback?.(); // 없으면 바로 callback 실행
+    return;
+  }
+
+  elements.forEach(function (el) {
+    const file = el.getAttribute('data-include');
+    fetch(file)
+      .then(res => res.text())
+      .then(html => {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        while (temp.firstChild) {
+          el.parentNode.insertBefore(temp.firstChild, el);
+        }
+        el.remove();
+        loaded++;
+        if (loaded === elements.length) {
+          callback?.(); // 모두 삽입 완료 시 callback 실행
+        }
+      })
+      .catch(err => {
+        console.error(`Include failed: ${file}`, err);
+        loaded++;
+        if (loaded === elements.length) {
+          callback?.();
+        }
       });
   });
 }
-includeHTML();
+
+// 호출 예시
+includeHTML(() => {
+  console.log('✅ All includes finished');
+  new Navigation().init(); // 이 시점에 .nav, .project-card 등 접근 가능
+});
 </script>
+
 </body>
 </html>
