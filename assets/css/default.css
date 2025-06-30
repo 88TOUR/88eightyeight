@@ -5,40 +5,36 @@
 
 :root {
   /* 브랜드 팔레트 */
-  --color-primary: #6c5ce7;     /* 메인 퍼플 */
-  --color-secondary: #a29bfe;   /* 라벤더 */
-  --color-accent: #fd79a8;      /* 핑크 하이라이트 */
-  --color-bg: #f9f9fc;          /* 밝은 배경 */
-  --color-dark: #2d3436;        /* 본문 텍스트 */
-  --color-gray: #636e72;        /* 보조 텍스트 */
-
-  /* 타이포 */
+  --color-primary: #6c5ce7;
+  --color-secondary: #a29bfe;
+  --color-accent: #fd79a8;
+  --color-bg: #f9f9fc;
+  --color-bg-alt: #fff1fa;
+  --color-dark: #2d3436;
+  --color-gray: #636e72;
+  --color-gradient: linear-gradient(90deg, #a29bfe 0%, #6c5ce7 100%);
+  --shadow-card: 0 10px 32px rgba(108,92,231,0.13);
+  --shadow-strong: 0 16px 48px rgba(108,92,231,0.17);
+  --radius-sm: 10px;
+  --radius-md: 22px;
+  --radius-lg: 48px;
   --font-kr: 'Noto Sans KR', sans-serif;
   --font-en: 'Poppins', sans-serif;
-
-  /* 길이·레이아웃 */
   --container-max: 1200px;
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 36px;
-  --shadow-card: 0 10px 30px rgba(0,0,0,.06);
 }
 
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html,
-body {
+html, body {
   scroll-behavior: smooth;
   font-family: var(--font-kr);
   color: var(--color-dark);
   background: var(--color-bg);
-  line-height: 1.6;
+  line-height: 1.7;
+  min-height: 100vh;
+  transition: background 0.4s;
 }
 
 /* 공통 유틸 */
@@ -50,6 +46,10 @@ body {
 
 .section {
   padding: 6rem 0;
+  position: relative;
+}
+.section:nth-child(even) {
+  background: var(--color-bg-alt);
 }
 
 .text-center { text-align: center; }
@@ -57,14 +57,23 @@ body {
 
 .btn {
   display: inline-block;
-  padding: 0.9rem 2.4rem;
+  padding: 1rem 2.6rem;
   border-radius: var(--radius-sm);
-  background: var(--color-primary);
+  background: var(--color-gradient);
   color: #fff;
-  font-weight: 500;
-  transition: background .3s ease;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 16px rgba(108,92,231,0.08);
+  transition: background .3s, box-shadow .3s, transform .2s;
+  border: none;
+  cursor: pointer;
+  margin-top: 1.3rem;
 }
-
-.btn:hover { background: var(--color-accent); }
+.btn:hover {
+  background: linear-gradient(90deg, #fd79a8 0%, #6c5ce7 100%);
+  box-shadow: 0 8px 32px rgba(253,121,168,0.15);
+  transform: scale(1.06);
+}
 
 .hidden { display: none !important; }
