@@ -112,8 +112,15 @@
   <script src="assets/js/animations.js"></script>
 
   <script>
-function includeHTML() {
+function includeHTML(callback) {
   const elements = document.querySelectorAll('[data-include]');
+  let loadedCount = 0;
+
+  if (elements.length === 0) {
+    callback?.();
+    return;
+  }
+
   elements.forEach(async (el) => {
     const file = el.getAttribute('data-include');
     try {
@@ -125,14 +132,23 @@ function includeHTML() {
         el.parentNode.insertBefore(temp.firstChild, el);
       }
       el.remove(); // 기존 <div data-include> 제거
+
+      loadedCount++;
+      if (loadedCount === elements.length) {
+        callback?.();  // 모든 include 완료 후 콜백 실행
+      }
     } catch (e) {
       console.error(`Failed to include ${file}:`, e);
     }
   });
 }
 
-includeHTML();
+// include 완료 후 App88 초기화
+includeHTML(() => {
+  window.App88.init();
+});
 </script>
+
 
 
 </body>
