@@ -1,9 +1,9 @@
 /**
- * Navigation Controller
+ * Navigation88 Controller
  * 반응형 네비게이션 및 헤더 동작 관리
  */
 
-class Navigation {
+class Navigation88 {
   constructor() {
     this.header = document.querySelector('.header');
     this.nav = document.querySelector('.nav');
@@ -193,4 +193,4 @@ class Navigation {
 }
 
 // 전역 등록
-window.Navigation = Navigation;
+window.Navigation88 = Navigation88;

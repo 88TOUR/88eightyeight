@@ -45,7 +45,7 @@ class App {
     // 핵심 모듈 초기화 순서
     const initOrder = [
       'ScrollEffects',
-      'Navigation', 
+      'Navigation88', 
       'Animations',
       'ProjectToggle'
     ];
