@@ -20,8 +20,7 @@ class Navigation {
 
   init() {
     this.bindEvents();
-    this.setupSmoothScroll();
-    this.updateActiveLink();
+    this.highlightActivePageLink();
   }
 
   /**
@@ -160,24 +159,17 @@ class Navigation {
   /**
    * 현재 섹션에 따른 활성 링크 업데이트
    */
-  updateActiveLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollPos = window.scrollY + window.innerHeight / 3;
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      const correspondingLink = document.querySelector(`.nav a[href="#${sectionId}"]`);
-
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        // 모든 링크에서 active 클래스 제거
-        this.navLinks.forEach(link => link.classList.remove('active'));
-        // 현재 섹션 링크에 active 클래스 추가
-        correspondingLink?.classList.add('active');
-      }
-    });
-  }
+  highlightActivePageLink() {
+  const path = location.pathname.replace(/\/$/, ''); // 맨 끝 슬래시 제거
+  this.navLinks.forEach(link => {
+    const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
+    if (linkPath === path) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
 
   /**
    * 리사이즈 핸들러
