@@ -6,27 +6,27 @@
   <title>88 기획 동아리 - 삶에 ( )을 더하다</title>
 
   <!-- 기본/전역 스타일 -->
-  <link rel="stylesheet" href="assets/css/default.css" />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/animations.css" />
-  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <link rel="stylesheet" href="/assets/css/default.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/animations.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
 
   <!-- 컴포넌트별 스타일 -->
-  <link rel="stylesheet" href="assets/css/components/navigation.css" />
-  <link rel="stylesheet" href="assets/css/components/hero.css" />
-  <link rel="stylesheet" href="assets/css/components/project-cards.css" />
-  <link rel="stylesheet" href="assets/css/components/about.css" />
-  <link rel="stylesheet" href="assets/css/components/footer.css" />
+  <link rel="stylesheet" href="/assets/css/components/navigation.css" />
+  <link rel="stylesheet" href="/assets/css/components/hero.css" />
+  <link rel="stylesheet" href="/assets/css/components/project-cards.css" />
+  <link rel="stylesheet" href="/assets/css/components/about.css" />
+  <link rel="stylesheet" href="/assets/css/components/footer.css" />
 
   <!-- 폰트 (구글 폰트 또는 로컬) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="/https://fonts.googleapis.com" />
+  <link rel="preconnect" href="/https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Poppins&display=swap" rel="stylesheet" />
 </head>
 
 <body>
   <!-- 헤더 네비게이션 -->
-  <div data-include="components/header.html"></div>
+  <div data-include="/components/header.html"></div>
 
   <!-- 히어로 섹션 -->
   <section id="home" class="hero-section">
@@ -98,7 +98,7 @@
   </section>
 
   <!-- 푸터 -->
-  <div data-include="components/footer.html"></div>
+  <div data-include="/components/footer.html"></div>
 
   <!-- 외부 라이브러리 (libs) : 내부 JS보다 반드시 먼저! -->
   <script src="assets/js/libs/jquery.min.js"></script>
@@ -143,10 +143,10 @@ function includeHTML(callback) {
   });
 }
 
-// include 완료 후 App88 초기화
-includeHTML(() => {
-  window.App88.init();
-});
+ // include 완료 후 App88 초기화
+  includeHTML(() => {
+    if (window.App88) window.App88.init();
+  });
 </script>
 
 
