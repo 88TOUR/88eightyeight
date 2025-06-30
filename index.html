@@ -113,17 +113,24 @@
 
   <script>
 function includeHTML() {
-  var elements = document.querySelectorAll('[data-include]');
-  if (elements.length === 0) return;
-  elements.forEach(function(el) {
-    fetch(el.getAttribute('data-include'))
-      .then(function(res) { return res.text(); })
-      .then(function(html) {
-        el.outerHTML = html;
-        includeHTML();
-      });
+  const elements = document.querySelectorAll('[data-include]');
+  elements.forEach(async (el) => {
+    const file = el.getAttribute('data-include');
+    try {
+      const res = await fetch(file);
+      const html = await res.text();
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+      while (temp.firstChild) {
+        el.parentNode.insertBefore(temp.firstChild, el);
+      }
+      el.remove(); // 기존 <div data-include> 제거
+    } catch (e) {
+      console.error(`Failed to include ${file}:`, e);
+    }
   });
 }
+
 includeHTML();
 </script>
 
