@@ -1,10 +1,9 @@
 /* -------------------------------------------------
-   기본 리셋·변수 정의
+   글로벌 변수 & 리셋
    ------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* 브랜드 팔레트 */
   --color-primary: #6c5ce7;
   --color-secondary: #a29bfe;
   --color-accent: #fd79a8;
@@ -37,7 +36,6 @@ html, body {
   transition: background 0.4s;
 }
 
-/* 공통 유틸 */
 .container {
   width: 90%;
   max-width: var(--container-max);
@@ -55,6 +53,7 @@ html, body {
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 
+/* 버튼 */
 .btn {
   display: inline-block;
   padding: 1rem 2.6rem;
@@ -74,6 +73,14 @@ html, body {
   background: linear-gradient(90deg, #fd79a8 0%, #6c5ce7 100%);
   box-shadow: 0 8px 32px rgba(253,121,168,0.15);
   transform: scale(1.06);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: #fff;
+}
+.btn-accent:hover {
+  background: var(--color-primary);
 }
 
 .hidden { display: none !important; }

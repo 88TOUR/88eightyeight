@@ -136,7 +136,7 @@ header {
 }
 
 /* -------------------------------------------------
-   애니메이션 & 등장 효과
+   애니메이션 & 등장 효과 (스크롤 페이드업)
    ------------------------------------------------- */
 [data-animate] {
   opacity: 0;
@@ -146,6 +146,62 @@ header {
 [data-animate].visible {
   opacity: 1;
   transform: none;
+}
+
+/* -------------------------------------------------
+   카드 공통 (기존 유지)
+   ------------------------------------------------- */
+.card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.card:hover { transform: translateY(-10px); }
+
+/* -------------------------------------------------
+   모달/히어로/기타
+   ------------------------------------------------- */
+main { min-height: 80vh; }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../images/hero/hero-pattern.svg') center/cover no-repeat;
+  opacity: .06;
+  pointer-events: none;
+}
+h1,h2,h3,h4,h5 {
+  font-family: var(--font-en);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+h1 { font-size: clamp(2.2rem, 4vw + 1rem, 4rem); }
+h2 { font-size: clamp(1.6rem, 3vw + .5rem, 2.6rem); }
+h3 { font-size: 1.4rem; }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal {
+  background: #fff;
+  width: min(90%, 700px);
+  padding: 2rem 2.5rem;
+  border-radius: var(--radius-md);
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  font-size: 1.6rem;
+  color: var(--color-gray);
+  cursor: pointer;
 }
 
 /* -------------------------------------------------
@@ -160,5 +216,5 @@ header {
   .nav, .container { padding: 0 1.1rem; }
   .section-title { font-size: 1.5rem; }
   .btn { padding: 0.8rem 1.4rem; font-size: 1rem; }
-  .project-card, .member, .stat-item { padding: 1.1rem 1rem; min-width: 180px; }
+  .project-card, .member, .stat-item, .card { padding: 1.1rem 1rem; min-width: 180px; }
 }
