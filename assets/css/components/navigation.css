@@ -31,19 +31,6 @@ nav ul li a.active { color: var(--color-primary); }
   transition: transform .3s ease;
 }
 @media (max-width: 767px) {
-  .nav ul {
-    display: none;
-    flex-direction: column;
-    gap: 0;
-    background: #fff;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 8px 32px rgba(108,92,231,0.06);
-    z-index: 999;
-  }
-  .nav.nav-open ul {
-    display: flex;
-  }
+  .hamburger { display: flex; }
+  nav ul { display: none; }
 }
