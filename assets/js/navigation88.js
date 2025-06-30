@@ -160,7 +160,7 @@ class Navigation88 {
   /**
    * 현재 섹션에 따른 활성 링크 업데이트
    */
-  highlightActivePageLink() {
+  updateActiveLink() {
   const path = location.pathname.replace(/\/$/, ''); // 맨 끝 슬래시 제거
   this.navLinks.forEach(link => {
     const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
