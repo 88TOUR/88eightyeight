@@ -1,4 +1,4 @@
-<!-- pages/recruitment.html -->
+<!-- /pages/recruitment.html (절대경로 수정 버전) -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,17 +7,17 @@
   <title>모집 안내 – 88 기획 동아리</title>
 
   <!-- 전역 스타일 -->
-  <link rel="stylesheet" href="../assets/css/default.css" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/animations.css" />
-  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <link rel="stylesheet" href="/assets/css/default.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/animations.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
 
   <!-- 컴포넌트별 스타일 -->
-  <link rel="stylesheet" href="../assets/css/components/navigation.css" />
-  <link rel="stylesheet" href="../assets/css/components/footer.css" />
+  <link rel="stylesheet" href="/assets/css/components/navigation.css" />
+  <link rel="stylesheet" href="/assets/css/components/footer.css" />
 </head>
 <body>
-  <div data-include="../components/header.html"></div>
+  <div data-include="/components/header.html"></div>
 
   <main class="section recruitment-section">
     <div class="container">
@@ -49,35 +49,33 @@
     </div>
   </main>
 
-  <div data-include="../components/footer.html"></div>
+  <div data-include="/components/footer.html"></div>
 
   <!-- 외부 라이브러리 -->
-  <script src="../assets/js/libs/jquery.min.js"></script>
-  <script src="../assets/js/libs/wow.min.js"></script>
-  <script src="../assets/js/libs/slick.min.js"></script>
-  <script src="../assets/js/libs/anime.min.js"></script>
-  <script src="../assets/js/libs/particles.min.js"></script>
+  <script src="/assets/js/libs/jquery.min.js"></script>
+  <script src="/assets/js/libs/wow.min.js"></script>
+  <script src="/assets/js/libs/slick.min.js"></script>
+  <script src="/assets/js/libs/anime.min.js"></script>
+  <script src="/assets/js/libs/particles.min.js"></script>
   <!-- 내부 스크립트 -->
-  <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/scroll-effects.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/scroll-effects.js"></script>
 
   <!-- 컴포넌트 로드 -->
   <script>
-function includeHTML() {
-  var elements = document.querySelectorAll('[data-include]');
-  if (elements.length === 0) return;
-  elements.forEach(function(el) {
-    fetch(el.getAttribute('data-include'))
-      .then(function(res) { return res.text(); })
-      .then(function(html) {
-        el.outerHTML = html;
-        includeHTML();
+    function includeHTML() {
+      var elements = document.querySelectorAll('[data-include]');
+      if (elements.length === 0) return;
+      elements.forEach(function(el) {
+        fetch(el.getAttribute('data-include'))
+          .then(function(res) { return res.text(); })
+          .then(function(html) {
+            el.outerHTML = html;
+            includeHTML();
+          });
       });
-  });
-}
-includeHTML();
-</script>
-
-
+    }
+    includeHTML();
+  </script>
 </body>
 </html>

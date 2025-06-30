@@ -1,4 +1,4 @@
-<!-- pages/team.html -->
+<!-- /pages/team.html (절대경로 수정 버전) -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,40 +7,40 @@
   <title>우리 팀 – 88 기획 동아리</title>
 
   <!-- 전역 스타일 -->
-  <link rel="stylesheet" href="../assets/css/default.css" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/animations.css" />
-  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <link rel="stylesheet" href="/assets/css/default.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/animations.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
 
   <!-- 컴포넌트별 스타일 -->
-  <link rel="stylesheet" href="../assets/css/components/navigation.css" />
-  <link rel="stylesheet" href="../assets/css/components/project-cards.css" />
-  <link rel="stylesheet" href="../assets/css/components/footer.css" />
+  <link rel="stylesheet" href="/assets/css/components/navigation.css" />
+  <link rel="stylesheet" href="/assets/css/components/project-cards.css" />
+  <link rel="stylesheet" href="/assets/css/components/footer.css" />
 </head>
 <body>
-  <div data-include="../components/header.html"></div>
+  <div data-include="/components/header.html"></div>
 
   <main class="section team-section">
     <div class="container">
       <h2 class="section-title text-center" data-animate="fade" data-delay="100">우리 팀</h2>
       <div class="projects-grid" data-animate="fade" data-delay="300">
         <div class="card">
-          <img src="../assets/images/team/member-01.jpg" alt="김지훈" />
+          <img src="/assets/images/team/member-01.jpg" alt="김지훈" />
           <h3>김지훈</h3>
           <p>프로젝트 매니저</p>
         </div>
         <div class="card">
-          <img src="../assets/images/team/member-02.jpg" alt="이서연" />
+          <img src="/assets/images/team/member-02.jpg" alt="이서연" />
           <h3>이서연</h3>
           <p>서비스 기획자</p>
         </div>
         <div class="card">
-          <img src="../assets/images/team/member-03.jpg" alt="박민수" />
+          <img src="/assets/images/team/member-03.jpg" alt="박민수" />
           <h3>박민수</h3>
           <p>프론트엔드 개발자</p>
         </div>
         <div class="card">
-          <img src="../assets/images/team/member-04.jpg" alt="최유진" />
+          <img src="/assets/images/team/member-04.jpg" alt="최유진" />
           <h3>최유진</h3>
           <p>UI/UX 디자이너</p>
         </div>
@@ -48,35 +48,33 @@
     </div>
   </main>
 
-  <div data-include="../components/footer.html"></div>
+  <div data-include="/components/footer.html"></div>
 
   <!-- 외부 라이브러리 -->
-  <script src="../assets/js/libs/jquery.min.js"></script>
-  <script src="../assets/js/libs/wow.min.js"></script>
-  <script src="../assets/js/libs/slick.min.js"></script>
-  <script src="../assets/js/libs/anime.min.js"></script>
-  <script src="../assets/js/libs/particles.min.js"></script>
+  <script src="/assets/js/libs/jquery.min.js"></script>
+  <script src="/assets/js/libs/wow.min.js"></script>
+  <script src="/assets/js/libs/slick.min.js"></script>
+  <script src="/assets/js/libs/anime.min.js"></script>
+  <script src="/assets/js/libs/particles.min.js"></script>
   <!-- 내부 스크립트 -->
-  <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/scroll-effects.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/scroll-effects.js"></script>
 
   <!-- 컴포넌트 로드 -->
   <script>
-function includeHTML() {
-  var elements = document.querySelectorAll('[data-include]');
-  if (elements.length === 0) return;
-  elements.forEach(function(el) {
-    fetch(el.getAttribute('data-include'))
-      .then(function(res) { return res.text(); })
-      .then(function(html) {
-        el.outerHTML = html;
-        includeHTML();
+    function includeHTML() {
+      var elements = document.querySelectorAll('[data-include]');
+      if (elements.length === 0) return;
+      elements.forEach(function(el) {
+        fetch(el.getAttribute('data-include'))
+          .then(function(res) { return res.text(); })
+          .then(function(html) {
+            el.outerHTML = html;
+            includeHTML();
+          });
       });
-  });
-}
-includeHTML();
-</script>
-
-
+    }
+    includeHTML();
+  </script>
 </body>
 </html>
