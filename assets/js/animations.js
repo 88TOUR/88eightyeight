@@ -149,6 +149,18 @@ class Animations {
         btn.classList.remove('hover-animate');
       });
     });
+    // /assets/js/animations.js
+  document.addEventListener('DOMContentLoaded', function() {
+  TypeHangul.type('#typed-word', {
+    text: '향',
+    intervalType: 120,
+    humanize: 0.4
+  });
+  document.querySelector('#typed-word').addEventListener('th.endType', function() {
+    document.getElementById('subtitle').style.opacity = 1;
+  });
+});
+
   }
 
   /**

@@ -64,6 +64,8 @@ class App {
     this.log('🎉 App initialized successfully');
   }
 
+  
+
   /**
    * 전역 이벤트 설정
    */

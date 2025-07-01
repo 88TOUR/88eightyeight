@@ -2,7 +2,7 @@
 [
   {
     "id": 1,
-    "name": "김지훈",
+    "name": "말랑이 1호",
     "role": "프로젝트 매니저",
     "image": "assets/images/team/member-01.jpg",
     "email": "jihun.kim@example.com",
@@ -13,7 +13,7 @@
   },
   {
     "id": 2,
-    "name": "이서연",
+    "name": "말랑이 2호",
     "role": "서비스 기획자",
     "image": "assets/images/team/member-02.jpg",
     "email": "seoyeon.lee@example.com",
@@ -24,7 +24,7 @@
   },
   {
     "id": 3,
-    "name": "박민수",
+    "name": "말랑이 3호",
     "role": "프론트엔드 개발자",
     "image": "assets/images/team/member-03.jpg",
     "email": "minspark@example.com",
@@ -35,7 +35,7 @@
   },
   {
     "id": 4,
-    "name": "최유진",
+    "name": "말랑이 4호",
     "role": "UI/UX 디자이너",
     "image": "assets/images/team/member-04.jpg",
     "email": "yujin.choi@example.com",

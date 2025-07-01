@@ -36,3 +36,18 @@
 }
 
 .hero .btn:hover { background: var(--color-secondary); color: #fff; }
+
+/* style.css 또는 hero.css의 맨 아래쪽에 추가 */
+.typing-title #typed-word {
+  border-right: 2px solid #6c5ce7;
+  padding-right: 4px;
+  animation: blink-cursor 0.8s steps(1) infinite;
+}
+@keyframes blink-cursor {
+  0%, 100% { border-color: #6c5ce7; }
+  50% { border-color: transparent; }
+}
+#subtitle {
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(.23,1,.32,1);
+}
