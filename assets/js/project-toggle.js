@@ -58,7 +58,7 @@ class ProjectToggle {
   }
 
   init() {
-    this.bindEvents();
+    this.bindEvents(e);
     this.createModal();
     this.add3DEffect();
   }
