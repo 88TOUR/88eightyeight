@@ -169,15 +169,18 @@ includeHTML(() => {
 
   // 1초(1000ms) 후에 타이핑 애니메이션 시작
   setTimeout(() => {
-    TypeHangul.type('#typed-word', {
-      text: '쉼',
-      intervalType: 70,
-      humanize: 0.4
-    });
-    document.querySelector('#typed-word').addEventListener('th.endType', function() {
+  TypeHangul.type('#typed-word', {
+    text: '쉼',
+    intervalType: 70,
+    humanize: 0.4
+  });
+  document.querySelector('#typed-word').addEventListener('th.endType', function() {
+    setTimeout(() => {
       document.getElementById('subtitle').style.opacity = 1;
-    });
-  }, 1750); // 1000ms = 1초
+    }, 1000); // 타이핑 끝난 후 1초 뒤에 subtitle 페이드인
+  });
+}, 1500); // 페이지 진입 후 1.5초 뒤에 타이핑 시작
+
 });
 
 </script>
