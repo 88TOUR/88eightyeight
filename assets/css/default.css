@@ -18,7 +18,7 @@
   --radius-md: 22px;
   --radius-lg: 48px;
   --font-kr: 'Noto Sans KR', sans-serif;
-  --font-en: 'Poppins', sans-serif;
+  --font-en: --font-en: 'Poppins', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   --container-max: 1200px;
 }
 
