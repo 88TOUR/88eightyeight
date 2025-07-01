@@ -9,19 +9,25 @@ class Animations {
     this.words = ['쉼', '음', '맛', '향', '빛', '꿈'];
     this.currentWordIndex = 0;
     this.isTyping = false;
-    this.typingSpeed = 150;
-    this.deletingSpeed = 100;
     this.pauseTime = 2000;
     this.animations = new Map();
     this.rafCallbacks = new Set();
+
+    // 커서(블링킹) 추가
+    this.cursor = document.createElement('span');
+    this.cursor.className = 'typing-cursor';
+    this.cursor.textContent = '|';
+    if (this.typingElement && !this.typingElement.nextSibling) {
+      this.typingElement.parentNode.insertBefore(this.cursor, this.typingElement.nextSibling);
+    }
   }
 
   init() {
     this.startTypingAnimation();
     this.initScrollAnimations();
     this.setupCounterAnimations();
-    this.setupStaggerAnimations(); // ⭐️ 추가: 스태거 애니메이션
-    this.setupHoverAnimations();   // ⭐️ 추가: 카드/버튼 호버 강화
+    this.setupStaggerAnimations();
+    this.setupHoverAnimations();
   }
 
   /**
@@ -29,47 +35,49 @@ class Animations {
    */
   startTypingAnimation() {
     if (!this.typingElement) return;
-    
+    this.startCursorBlink();
     this.typeWord();
   }
 
   /**
-   * 단어 타이핑 효과
+   * 단어 타이핑 효과 (자연스러운 랜덤 속도)
    */
   async typeWord() {
     if (this.isTyping) return;
-    
     this.isTyping = true;
     const currentWord = this.words[this.currentWordIndex];
-    
-    // 타이핑 애니메이션
+
+    // 타이핑 애니메이션 (랜덤 속도)
     for (let i = 0; i <= currentWord.length; i++) {
-      await this.delay(this.typingSpeed);
+      await this.delay(this.randomSpeed(90, 180));
       this.typingElement.textContent = currentWord.slice(0, i);
     }
 
-    // 잠시 멈춤
     await this.delay(this.pauseTime);
 
-    // 지우기 애니메이션
+    // 지우기 애니메이션 (랜덤 속도)
     for (let i = currentWord.length; i >= 0; i--) {
-      await this.delay(this.deletingSpeed);
+      await this.delay(this.randomSpeed(60, 120));
       this.typingElement.textContent = currentWord.slice(0, i);
     }
 
-    // 다음 단어로 이동
     this.currentWordIndex = (this.currentWordIndex + 1) % this.words.length;
     this.isTyping = false;
-    
-    // 재귀 호출로 무한 반복
     this.typeWord();
   }
 
-  /**
-   * 지연 함수 (Promise 기반)
-   */
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  randomSpeed(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  startCursorBlink() {
+    setInterval(() => {
+      this.cursor.style.opacity = this.cursor.style.opacity === '0' ? '1' : '0';
+    }, 500);
   }
 
   /**
@@ -108,6 +116,7 @@ class Animations {
       element.classList.add('animate-in', `animate-${animationType}`);
     }, delay);
   }
+
   /**
    * ⭐️ 스태거 애니메이션 (부모에 data-stagger)
    */
@@ -124,7 +133,6 @@ class Animations {
    * ⭐️ 카드/버튼 호버 애니메이션 강화
    */
   setupHoverAnimations() {
-    // 카드
     document.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('mouseenter', () => {
         card.classList.add('hover-animate');
@@ -133,7 +141,6 @@ class Animations {
         card.classList.remove('hover-animate');
       });
     });
-    // 버튼
     document.querySelectorAll('.btn').forEach(btn => {
       btn.addEventListener('mouseenter', () => {
         btn.classList.add('hover-animate');
@@ -149,7 +156,6 @@ class Animations {
    */
   setupCounterAnimations() {
     const counters = document.querySelectorAll('[data-counter]');
-    
     counters.forEach(counter => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -159,7 +165,6 @@ class Animations {
           }
         });
       }, { threshold: 0.5 });
-
       observer.observe(counter);
     });
   }
@@ -168,39 +173,34 @@ class Animations {
    * 카운터 애니메이션 실행
    */
   animateCounter(element) {
-  const target = parseInt(element.dataset.counter);
-  const duration = parseInt(element.dataset.duration) || 2000;
-  const startTime = performance.now();
+    const target = parseInt(element.dataset.counter);
+    const duration = parseInt(element.dataset.duration) || 2000;
+    const startTime = performance.now();
 
-  // stat-number span 찾기
-  const numberEl = element.querySelector('.stat-number');
-  if (!numberEl) return;
+    // stat-number span 찾기
+    const numberEl = element.querySelector('.stat-number');
+    if (!numberEl) return;
 
-  const animate = (currentTime) => {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const easeProgress = 1 - Math.pow(1 - progress, 4);
-    const currentValue = Math.round(target * easeProgress);
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 4);
+      const currentValue = Math.round(target * easeProgress);
 
-    numberEl.textContent = currentValue.toLocaleString();
+      numberEl.textContent = currentValue.toLocaleString();
 
-    if (progress < 1) {
-      requestAnimationFrame(animate);
-    }
-  };
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
 
-  requestAnimationFrame(animate);
-}
+    requestAnimationFrame(animate);
+  }
 
-
-  /**
-   * 페이드 인 애니메이션 (수동 트리거용)
-   */
   fadeIn(element, duration = 600) {
     return new Promise(resolve => {
       element.style.opacity = '0';
       element.style.transition = `opacity ${duration}ms ease`;
-      
       requestAnimationFrame(() => {
         element.style.opacity = '1';
         setTimeout(resolve, duration);
@@ -208,9 +208,6 @@ class Animations {
     });
   }
 
-  /**
-   * 페이드 아웃 애니메이션
-   */
   fadeOut(element, duration = 600) {
     return new Promise(resolve => {
       element.style.transition = `opacity ${duration}ms ease`;
@@ -219,17 +216,12 @@ class Animations {
     });
   }
 
-  /**
-   * 슬라이드 애니메이션
-   */
   slideToggle(element, duration = 400) {
     if (element.style.maxHeight && element.style.maxHeight !== '0px') {
-      // 슬라이드 업
       element.style.maxHeight = '0px';
       element.style.overflow = 'hidden';
     } else {
-      // 슬라이드 다운
-      element.style.maxHeight = element.scrollHeight + 'px';  
+      element.style.maxHeight = element.scrollHeight + 'px';
       setTimeout(() => {
         element.style.maxHeight = 'none';
         element.style.overflow = 'visible';
@@ -237,26 +229,17 @@ class Animations {
     }
   }
 
-  /**
-   * 애니메이션 일시정지 (페이지 숨김시)
-   */
   pause() {
     this.isTyping = false;
     this.rafCallbacks.clear();
   }
 
-  /**
-   * 애니메이션 재시작
-   */
   resume() {
     if (!this.isTyping) {
       this.startTypingAnimation();
     }
   }
 
-  /**
-   * requestAnimationFrame 관리
-   */
   addRAFCallback(callback) {
     this.rafCallbacks.add(callback);
   }
