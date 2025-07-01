@@ -149,6 +149,57 @@
   object-fit: cover;
 }
 
+/* 기본 페이드 인 */
+.animate-fadeInUp {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  transition: opacity 0.8s cubic-bezier(.23,1,.32,1), transform 0.8s cubic-bezier(.23,1,.32,1);
+}
+[data-animate] {
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+}
+
+/* 슬라이드 인 */
+.animate-slideInLeft {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition: opacity .8s cubic-bezier(.23,1,.32,1), transform .8s cubic-bezier(.23,1,.32,1);
+}
+[data-animate="slideInLeft"] { opacity: 0; transform: translateX(-60px);}
+.animate-slideInRight { opacity: 1 !important; transform: translateX(0) !important;}
+[data-animate="slideInRight"] { opacity: 0; transform: translateX(60px);}
+.animate-slideInUp { opacity: 1 !important; transform: translateY(0) !important;}
+[data-animate="slideInUp"] { opacity: 0; transform: translateY(60px);}
+.animate-slideInDown { opacity: 1 !important; transform: translateY(0) !important;}
+[data-animate="slideInDown"] { opacity: 0; transform: translateY(-60px);}
+
+/* 스케일 인 */
+.animate-scaleIn {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  transition: opacity .7s cubic-bezier(.23,1,.32,1), transform .7s cubic-bezier(.23,1,.32,1);
+}
+[data-animate="scaleIn"] { opacity: 0; transform: scale(0.7);}
+
+/* 플립 인 */
+.animate-flipInY {
+  opacity: 1 !important;
+  transform: rotateY(0deg) !important;
+  transition: opacity .8s, transform .8s cubic-bezier(.23,1,.32,1);
+}
+[data-animate="flipInY"] { opacity: 0; transform: rotateY(90deg);}
+.animate-flipInX { opacity: 1 !important; transform: rotateX(0deg) !important;}
+[data-animate="flipInX"] { opacity: 0; transform: rotateX(90deg);}
+
+/* 카드/버튼 호버 애니메이션 */
+.project-card.hover-animate, .btn.hover-animate {
+  transform: scale(1.04) rotateZ(-1deg);
+  box-shadow: 0 10px 32px rgba(108,92,231,0.18);
+  transition: transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s cubic-bezier(.23,1,.32,1);
+}
+
+
 /* -------------------------------------------------
    애니메이션 & 등장 효과 (스크롤 페이드업)
    ------------------------------------------------- */

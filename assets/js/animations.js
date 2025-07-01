@@ -12,8 +12,6 @@ class Animations {
     this.typingSpeed = 150;
     this.deletingSpeed = 100;
     this.pauseTime = 2000;
-    
-    // 애니메이션 상태 관리
     this.animations = new Map();
     this.rafCallbacks = new Set();
   }
@@ -22,6 +20,8 @@ class Animations {
     this.startTypingAnimation();
     this.initScrollAnimations();
     this.setupCounterAnimations();
+    this.setupStaggerAnimations(); // ⭐️ 추가: 스태거 애니메이션
+    this.setupHoverAnimations();   // ⭐️ 추가: 카드/버튼 호버 강화
   }
 
   /**
@@ -77,10 +77,8 @@ class Animations {
    */
   initScrollAnimations() {
     const animatedElements = document.querySelectorAll('[data-animate]');
-    
     if (animatedElements.length === 0) return;
 
-    // Intersection Observer 설정 (성능 최적화)
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -90,7 +88,7 @@ class Animations {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           this.triggerElementAnimation(entry.target);
-          observer.unobserve(entry.target); // 한 번만 실행
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -106,12 +104,46 @@ class Animations {
   triggerElementAnimation(element) {
     const animationType = element.dataset.animate || 'fadeInUp';
     const delay = parseInt(element.dataset.delay) || 0;
-    
     setTimeout(() => {
       element.classList.add('animate-in', `animate-${animationType}`);
     }, delay);
   }
+  /**
+   * ⭐️ 스태거 애니메이션 (부모에 data-stagger)
+   */
+  setupStaggerAnimations() {
+    document.querySelectorAll('[data-stagger]').forEach(parent => {
+      const children = parent.querySelectorAll('[data-animate]');
+      children.forEach((el, i) => {
+        el.dataset.delay = i * 120 + (parseInt(el.dataset.delay) || 0);
+      });
+    });
+  }
 
+  /**
+   * ⭐️ 카드/버튼 호버 애니메이션 강화
+   */
+  setupHoverAnimations() {
+    // 카드
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.classList.add('hover-animate');
+      });
+      card.addEventListener('mouseleave', () => {
+        card.classList.remove('hover-animate');
+      });
+    });
+    // 버튼
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        btn.classList.add('hover-animate');
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.classList.remove('hover-animate');
+      });
+    });
+  }
+  
   /**
    * 카운터 애니메이션 설정
    */
