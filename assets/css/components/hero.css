@@ -27,7 +27,7 @@
 .typing-title {
   font-family: var(--font-en), 'Poppins', 'Noto Sans KR', sans-serif;
   font-size: clamp(2.2rem, 5vw + 1rem, 4rem);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.01em;
   color: #23213a;
   margin-bottom: 2.2rem;
@@ -35,8 +35,8 @@
 }
 .typing-title #typed-word {
   color: #6c5ce7;
-  border-right: 2.5px solid #6c5ce7;
-  padding-right: 6px;
+  border-right: 1.5px solid #6c5ce7;
+  padding-right: 4px;
   animation: blink-cursor 0.9s steps(1) infinite;
 }
 @keyframes blink-cursor {
