@@ -253,8 +253,20 @@ class ProjectToggle {
    * ESC 키 모달 닫기
    */
   closeModal() {
-    this.closeModal();
-  }
+  if (!this.isModalOpen) return;
+
+  this.modal.classList.remove('modal-active');
+  
+  // 애니메이션 완료 후 숨김
+  setTimeout(() => {
+    this.modal.classList.remove('modal-show');
+    this.isModalOpen = false;
+    this.currentProject = null;
+    // 바디 스크롤 복원
+    document.body.style.overflow = '';
+  }, 300);
+}
+
 }
 
 // 전역 등록
