@@ -42,6 +42,8 @@ nav ul li a.active { color: var(--color-primary); }
   transition: transform .3s ease;
   display: block;
 }
+
+/* 모바일 대응 */
 @media (max-width: 767px) {
   .hamburger { display: flex; }
   nav ul {
@@ -51,13 +53,16 @@ nav ul li a.active { color: var(--color-primary); }
     background: #fff;
     flex-direction: column;
     gap: 0;
-    display: none;
+    display: none !important; /* !important로 강제 */
     border-bottom: 1px solid #eee;
     box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    margin: 0;
+    padding: 0;
   }
   nav.nav-open ul,
   nav ul.open {
-    display: flex;
+    display: flex !important; /* !important로 강제 */
+    flex-direction: column;
   }
   nav ul li {
     width: 100%;
