@@ -60,6 +60,7 @@ class ProjectToggle {
   init() {
     this.bindEvents();
     this.createModal();
+    this.add3DEffect();
   }
 
   /**
@@ -205,24 +206,6 @@ class ProjectToggle {
       .join('');
   }
 
-  /**
-   * 모달 닫기
-   */
-  closeModal() {
-    if (!this.isModalOpen) return;
-
-    this.modal.classList.remove('modal-active');
-    
-    // 애니메이션 완료 후 숨김
-    setTimeout(() => {
-      this.modal.classList.remove('modal-show');
-      this.isModalOpen = false;
-      this.currentProject = null;
-      
-      // 바디 스크롤 복원
-      document.body.style.overflow = '';
-    }, 300);
-  }
 
   /**
    * 3D 카드 효과 (마우스 이벤트)
