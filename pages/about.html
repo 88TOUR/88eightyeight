@@ -27,47 +27,59 @@
 
   <!-- 소개 페이지 메인 섹션 -->
   <main>
+    <!-- 소개 섹션: 이미지와 텍스트가 좌우로 등장 -->
     <section class="section about">
-  <div class="container about-section" data-stagger>
-    <div class="about-img" data-animate="slideInLeft">
-      <img src="/assets/images/backgrounds/section-bg-01.jpg" alt="88 동아리 활동 사진" />
-    </div>
-    <div class="about-text" data-animate="fadeInUp">
-      <h2>대학연합 기획 동아리 “88”</h2>
-      <p>...</p>
-      <div class="stats" data-stagger>
-        <div class="stat-item" data-animate="scaleIn" data-counter="6" data-duration="1500">
-          <h3>프로젝트 주제</h3>
-          <p>6개 이상</p>
+      <div class="container about-section" data-stagger>
+        <div class="about-img" data-animate="slideInLeft">
+          <img src="/assets/images/backgrounds/section-bg-01.jpg" alt="88 동아리 활동 사진" />
         </div>
-        <div class="stat-item" data-animate="scaleIn" data-counter="50" data-duration="1500">
-          <h3>참여 인원</h3>
-          <p>50명 이상</p>
-        </div>
-        <div class="stat-item" data-animate="scaleIn" data-counter="10" data-duration="1500">
-          <h3>성과 발표</h3>
-          <p>10회 이상</p>
+        <div class="about-text" data-animate="fadeInUp">
+          <h2 data-animate="fadeInUp">대학연합 기획 동아리 “88”</h2>
+          <p data-animate="fadeInUp" data-delay="100">
+            “삶에 ( )을 더하다”라는 슬로건 아래,<br>
+            88은 다양한 테마 기획 프로젝트를 통해<br>
+            학생들의 창의력과 협업 능력을 키우고<br>
+            새로운 가치를 창출하는 공간입니다.
+          </p>
+          <p data-animate="fadeInUp" data-delay="200">
+            매 학기마다 “삶에 쉼을 더하다”, “삶에 음을 더하다” 등<br>
+            하나의 키워드를 중심으로 프로젝트를 진행하며,<br>
+            기획 과정 전반을 경험하고 결과물을 발표합니다.
+          </p>
+
+          <!-- 통계 카드: 스태거 + 다양한 애니메이션 -->
+          <div class="stats" data-stagger>
+            <div class="stat-item" data-animate="scaleIn" data-counter="6" data-duration="1500">
+              <h3>프로젝트 주제</h3>
+              <p>6개 이상</p>
+            </div>
+            <div class="stat-item" data-animate="flipInY" data-counter="50" data-duration="1500">
+              <h3>참여 인원</h3>
+              <p>50명 이상</p>
+            </div>
+            <div class="stat-item" data-animate="slideInRight" data-counter="10" data-duration="1500">
+              <h3>성과 발표</h3>
+              <p>10회 이상</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- 동아리 활동 설명 추가 섹션 -->
     <section class="section">
       <div class="container">
-        <h2 class="text-center">우리의 가치</h2>
-        <div class="grid-3" data-scroll="fade" data-delay="200">
-          <div class="card">
+        <h2 class="text-center" data-animate="fadeInUp">우리의 가치</h2>
+        <div class="grid-3" data-stagger>
+          <div class="card" data-animate="slideInLeft">
             <h3>창의성</h3>
             <p>새로운 아이디어 발굴과 구현을 통해 색다른 경험을 제공합니다.</p>
           </div>
-          <div class="card">
+          <div class="card" data-animate="scaleIn">
             <h3>협업</h3>
             <p>다양한 전공·학과 학생들이 팀을 이루어 시너지를 창출합니다.</p>
           </div>
-          <div class="card">
+          <div class="card" data-animate="slideInRight">
             <h3>실행력</h3>
             <p>기획부터 개발·발표까지 전 과정을 책임감 있게 완수합니다.</p>
           </div>
@@ -129,7 +141,7 @@ function includeHTML(callback) {
 // 호출 예시
 includeHTML(() => {
   console.log('✅ All includes finished');
-  new Navigation88().init(); // 이 시점에 .nav, .project-card 등 접근 가능
+  new Navigation88().init();
   new Animations().init();
 });
 </script>
