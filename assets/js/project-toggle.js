@@ -67,6 +67,16 @@ class ProjectToggle {
    * 이벤트 바인딩
    */
   bindEvents() {
+    // 모달이 열려 있으면 카드 클릭 무시
+    if (this.isModalOpen && !e.target.classList.contains('modal-close') && !e.target.classList.contains('modal-overlay')) {
+      return;
+    }
+    const projectCard = e.target.closest('.project-card');
+    if (projectCard) {
+      e.preventDefault();
+      this.handleCardClick(projectCard);
+      return;
+    }
     // 이벤트 위임 사용 (성능 최적화)
     document.addEventListener('click', (e) => {
       const projectCard = e.target.closest('.project-card');
@@ -109,6 +119,11 @@ class ProjectToggle {
    * 모달 DOM 생성
    */
   createModal() {
+
+    if (document.getElementById('project-modal')) {
+    this.modal = document.getElementById('project-modal');
+    return;
+  }
     const modalHTML = `
       <div class="modal-overlay" id="project-modal">
         <div class="modal project-modal">
@@ -170,6 +185,13 @@ class ProjectToggle {
     requestAnimationFrame(() => {
       this.modal.classList.add('modal-active');
     });
+
+    // 버튼 이벤트 바인딩 (여기서!)
+  const demoBtn = this.modal.querySelector('.project-demo');
+  const githubBtn = this.modal.querySelector('.project-github');
+  if (demoBtn) demoBtn.onclick = () => alert('데모 페이지는 준비 중입니다.');
+  if (githubBtn) githubBtn.onclick = () => window.open('https://github.com/', '_blank');
+  
   }
 
   /**
