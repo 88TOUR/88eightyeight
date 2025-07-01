@@ -67,7 +67,7 @@ nav ul li a.active { color: var(--color-primary); }
     background: #fff;
     flex-direction: column;
     gap: 0;
-    display: none !important;
+    /* display: none !important; ← 이 줄 제거! */
     border-bottom: 1px solid #eee;
     box-shadow: 0 2px 12px rgba(0,0,0,0.07);
     margin: 0;
@@ -75,14 +75,14 @@ nav ul li a.active { color: var(--color-primary); }
     max-height: 0;
     opacity: 0;
     pointer-events: none;
+    overflow: hidden;
     transition: 
       max-height 0.45s cubic-bezier(.23,1,.32,1),
       opacity 0.35s cubic-bezier(.23,1,.32,1);
-    overflow: hidden;
   }
   nav.nav-open ul,
   nav ul.open {
-    display: flex !important;
+    /* display: flex !important; ← 이 줄도 제거! */
     max-height: 500px; /* 충분히 큰 값으로 설정 */
     opacity: 1;
     pointer-events: auto;
@@ -90,6 +90,8 @@ nav ul li a.active { color: var(--color-primary); }
       max-height 0.55s cubic-bezier(.23,1,.32,1),
       opacity 0.35s cubic-bezier(.23,1,.32,1);
   }
+  /* 이하 li, li a 스타일은 그대로 두세요 */
+
   nav ul li {
     width: 100%;
     text-align: left;
