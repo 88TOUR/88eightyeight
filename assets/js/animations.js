@@ -4,82 +4,13 @@
  */
 
 class Animations {
-  constructor() {
-    this.typingElement = document.getElementById('typed-word');
-    this.words = ['쉼', '음', '맛', '향', '빛', '꿈'];
-    this.currentWordIndex = 0;
-    this.isTyping = false;
-    this.pauseTime = 2000;
-    this.animations = new Map();
-    this.rafCallbacks = new Set();
-
-    // 커서(블링킹) 추가
-    this.cursor = document.createElement('span');
-    this.cursor.className = 'typing-cursor';
-    this.cursor.textContent = '|';
-    if (this.typingElement && !this.typingElement.nextSibling) {
-      this.typingElement.parentNode.insertBefore(this.cursor, this.typingElement.nextSibling);
-    }
-  }
-
+ 
   init() {
-    this.startTypingAnimation();
     this.initScrollAnimations();
     this.setupCounterAnimations();
     this.setupStaggerAnimations();
     this.setupHoverAnimations();
   }
-
-  /**
-   * 타이핑 애니메이션 시작
-   */
-  startTypingAnimation() {
-    if (!this.typingElement) return;
-    this.startCursorBlink();
-    this.typeWord();
-  }
-
-  /**
-   * 단어 타이핑 효과 (자연스러운 랜덤 속도)
-   */
-  async typeWord() {
-    if (this.isTyping) return;
-    this.isTyping = true;
-    const currentWord = this.words[this.currentWordIndex];
-
-    // 타이핑 애니메이션 (랜덤 속도)
-    for (let i = 0; i <= currentWord.length; i++) {
-      await this.delay(this.randomSpeed(90, 180));
-      this.typingElement.textContent = currentWord.slice(0, i);
-    }
-
-    await this.delay(this.pauseTime);
-
-    // 지우기 애니메이션 (랜덤 속도)
-    for (let i = currentWord.length; i >= 0; i--) {
-      await this.delay(this.randomSpeed(60, 120));
-      this.typingElement.textContent = currentWord.slice(0, i);
-    }
-
-    this.currentWordIndex = (this.currentWordIndex + 1) % this.words.length;
-    this.isTyping = false;
-    this.typeWord();
-  }
-
-  delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  randomSpeed(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  startCursorBlink() {
-    setInterval(() => {
-      this.cursor.style.opacity = this.cursor.style.opacity === '0' ? '1' : '0';
-    }, 500);
-  }
-
   /**
    * 스크롤 기반 애니메이션 초기화 (Intersection Observer 사용)
    */
