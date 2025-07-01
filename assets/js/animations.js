@@ -143,7 +143,7 @@ class Animations {
       });
     });
   }
-  
+
   /**
    * 카운터 애니메이션 설정
    */
@@ -168,27 +168,30 @@ class Animations {
    * 카운터 애니메이션 실행
    */
   animateCounter(element) {
-    const target = parseInt(element.dataset.counter);
-    const duration = parseInt(element.dataset.duration) || 2000;
-    const startTime = performance.now();
+  const target = parseInt(element.dataset.counter);
+  const duration = parseInt(element.dataset.duration) || 2000;
+  const startTime = performance.now();
 
-    const animate = (currentTime) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      // easeOutQuart 이징 함수
-      const easeProgress = 1 - Math.pow(1 - progress, 4);
-      const currentValue = Math.round(target * easeProgress);
-      
-      element.textContent = currentValue.toLocaleString();
+  // stat-number span 찾기
+  const numberEl = element.querySelector('.stat-number');
+  if (!numberEl) return;
 
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
+  const animate = (currentTime) => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easeProgress = 1 - Math.pow(1 - progress, 4);
+    const currentValue = Math.round(target * easeProgress);
 
-    requestAnimationFrame(animate);
-  }
+    numberEl.textContent = currentValue.toLocaleString();
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+  };
+
+  requestAnimationFrame(animate);
+}
+
 
   /**
    * 페이드 인 애니메이션 (수동 트리거용)
