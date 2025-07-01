@@ -6,7 +6,7 @@
   padding: 10rem 0 8rem;
   text-align: center;
   
-  background: linear-gradient(135deg, #cdfff8 0% #dbeafe 50% #6c5ce7 100%);
+  background: linear-gradient(135deg, #cdfff8 0%, #dbeafe 50%, #6c5ce7 100%);
   background-size: 100% 100%, 8px 8px;
   background-repeat: no-repeat, repeat;
   color: #23213a;
