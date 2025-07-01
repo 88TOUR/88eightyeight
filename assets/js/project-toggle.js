@@ -66,7 +66,7 @@ class ProjectToggle {
   /**
    * 이벤트 바인딩
    */
-  bindEvents() {
+  bindEvents(e) {
     // 모달이 열려 있으면 카드 클릭 무시
     if (this.isModalOpen && !e.target.classList.contains('modal-close') && !e.target.classList.contains('modal-overlay')) {
       return;
@@ -191,7 +191,7 @@ class ProjectToggle {
   const githubBtn = this.modal.querySelector('.project-github');
   if (demoBtn) demoBtn.onclick = () => alert('데모 페이지는 준비 중입니다.');
   if (githubBtn) githubBtn.onclick = () => window.open('https://github.com/', '_blank');
-  
+
   }
 
   /**
