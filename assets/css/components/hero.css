@@ -49,5 +49,5 @@
 }
 #subtitle {
   opacity: 0;
-  transition: opacity 1s cubic-bezier(.23,1,.32,1);
+  transition: opacity 1.5s cubic-bezier(.23,1,.32,1);
 }
