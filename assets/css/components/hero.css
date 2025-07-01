@@ -34,20 +34,20 @@
   line-height: 1.18;
 }
 .typing-title #typed-word {
-  color: #6c5ce7;
-  border-right: 1.5px solid #6c5ce7;
+  color: #4834d4;
+  border-right: 1.5px solid #4834d4;
   padding-right: 4px;
   animation: blink-cursor 0.9s steps(1) infinite;
 }
 @keyframes blink-cursor {
-  0%, 100% { border-color: #6c5ce7; }
+  0%, 100% { border-color: #4834d4; }
   50% { border-color: transparent; }
 }
 
 #subtitle {
   opacity: 0;
   font-size: 1.23rem;
-  color: #6c5ce7;
+  color: #4834d4;
   background: none;
   border-radius: 0;
   padding: 0;
@@ -62,7 +62,7 @@
 
 .hero-section .btn {
   margin-top: 2.8rem;
-  background: linear-gradient(90deg, #a29bfe 0%, #6c5ce7 100%);
+  background: linear-gradient(90deg, #a29bfe 0%, #4834d4 100%);
   color: #fff;
   border-radius: 0.6rem;
   font-weight: bold;
@@ -72,7 +72,7 @@
   box-shadow: 0 4px 24px rgba(108,92,231,0.09);
 }
 .hero-section .btn:hover {
-  background: linear-gradient(90deg, #6c5ce7 0%, #a29bfe 100%);
+  background: linear-gradient(90deg, #4834d4 0%, #a29bfe 100%);
   color: #fff;
 }
 
@@ -110,7 +110,7 @@
   #subtitle {
     font-size: 1.0rem;
     margin-top: 1.3rem;
-    color: #6c5ce7;
+    color: #4834d4;
     padding: 0;
     max-width: 90vw;
     text-align: center;

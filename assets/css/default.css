@@ -4,14 +4,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --color-primary: #6c5ce7;
+  --color-primary: #4834d4;
   --color-secondary: #a29bfe;
   --color-accent: #fd79a8;
   --color-bg: #f9f9fc;
   --color-bg-alt: #efecf9;
   --color-dark: #2d3436;
   --color-gray: #636e72;
-  --color-gradient: linear-gradient(90deg, #a29bfe 0%, #6c5ce7 100%);
+  --color-gradient: linear-gradient(90deg, #a29bfe 0%, #4834d4 100%);
   --shadow-card: 0 10px 32px rgba(108,92,231,0.13);
   --shadow-strong: 0 16px 48px rgba(108,92,231,0.17);
   --radius-sm: 10px;
@@ -70,7 +70,7 @@ html, body {
   margin-top: 1.3rem;
 }
 .btn:hover {
-  background: linear-gradient(90deg, #fd79a8 0%, #6c5ce7 100%);
+  background: linear-gradient(90deg, #fd79a8 0%, #4834d4 100%);
   box-shadow: 0 8px 32px rgba(253,121,168,0.15);
   transform: scale(1.06);
 }

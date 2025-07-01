@@ -6,7 +6,7 @@
 /*.typing-cursor {
   display: inline-block;
   width: 1ch;
-  color: var(--color-primary, #6c5ce7);
+  color: var(--color-primary, #4834d4);
   animation: blink 1s steps(1) infinite;
   font-weight: bold;
 }*/
