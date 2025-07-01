@@ -3,6 +3,9 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
+  position: relative;
+  z-index: 100;
+  background: #fff;
 }
 .logo img { height: 38px; }
 nav ul {
@@ -10,11 +13,15 @@ nav ul {
   display: flex;
   gap: 3rem;
   font-family: var(--font-en);
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s;
 }
 nav ul li a {
   color: var(--color-dark);
   font-weight: 500;
   transition: color .25s;
+  white-space: nowrap; /* 줄바꿈 방지 */
 }
 nav ul li a:hover,
 nav ul li a.active { color: var(--color-primary); }
@@ -23,14 +30,47 @@ nav ul li a.active { color: var(--color-primary); }
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
+  width: 36px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
 }
 .hamburger span {
   width: 26px; height: 3px;
   background: var(--color-dark);
   border-radius: 2px;
   transition: transform .3s ease;
+  display: block;
 }
 @media (max-width: 767px) {
   .hamburger { display: flex; }
-  nav ul { display: none; }
+  nav ul {
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: #fff;
+    flex-direction: column;
+    gap: 0;
+    display: none;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  nav.nav-open ul,
+  nav ul.open {
+    display: flex;
+  }
+  nav ul li {
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  nav ul li:last-child {
+    border-bottom: none;
+  }
+  nav ul li a {
+    display: block;
+    padding: 1.2rem 2rem;
+    font-size: 1.1rem;
+    white-space: normal;
+  }
 }
