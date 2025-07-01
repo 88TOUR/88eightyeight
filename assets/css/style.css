@@ -328,6 +328,176 @@ h3 { font-size: 1.4rem; }
   background: linear-gradient(90deg, #6c5ce7 0%, #a29bfe 100%);
 }
 
+/* -------------------------------------------------
+   모집 안내 전용 스타일 (88 기획 동아리)
+   ------------------------------------------------- */
+
+/* 섹션 배경 및 여백 */
+.recruitment-section {
+  background: linear-gradient(120deg, #f9f9fc 70%, #f3e9fc 100%);
+  border-radius: var(--radius-md);
+  box-shadow: 0 6px 32px rgba(108,92,231,0.08);
+  padding: 4.5rem 0 3.5rem 0;
+  margin: 3rem 0 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 섹션 타이틀 강조 */
+.recruitment-section .section-title {
+  color: #6c5ce7;
+  letter-spacing: 0.01em;
+  font-family: var(--font-en), 'Noto Sans KR', sans-serif;
+  font-weight: 800;
+  text-shadow: 0 2px 12px rgba(108,92,231,0.07);
+  margin-bottom: 1.2rem;
+}
+.recruitment-section .section-title::after {
+  background: linear-gradient(90deg, #ff6a00, #ee0979 70%);
+  height: 4px;
+  width: 70%;
+  border-radius: 2px;
+  margin-top: 1.1rem;
+  animation: underlineIn 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+/* 안내 문구 */
+.recruitment-section p {
+  color: #6c5ce7;
+  font-size: 1.18rem;
+  font-weight: 500;
+  margin-bottom: 2.8rem;
+  background: rgba(255,255,255,0.5);
+  border-radius: 1.2rem;
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 2px 12px rgba(108,92,231,0.04);
+  display: inline-block;
+}
+
+/* 소제목 */
+.recruitment-section h3 {
+  color: #ee0979;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1.1rem;
+  font-family: var(--font-en), 'Noto Sans KR', sans-serif;
+  border-left: 5px solid #ff6a00;
+  padding-left: 14px;
+  letter-spacing: 0.01em;
+  background: rgba(255,255,255,0.7);
+  border-radius: 0.4em;
+  display: inline-block;
+}
+
+/* 리스트 공통 */
+.recruit-list {
+  margin: 0 0 2.5rem 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.12rem;
+  color: #444;
+  font-weight: 500;
+  line-height: 1.7;
+}
+.recruit-list li {
+  position: relative;
+  padding-left: 1.8em;
+  margin-bottom: 0.85em;
+  background: rgba(255,255,255,0.6);
+  border-radius: 0.6em;
+  transition: background 0.2s;
+}
+.recruit-list li:hover {
+  background: linear-gradient(90deg, #f3e9fc 80%, #f9f9fc 100%);
+}
+.recruit-list li::before {
+  content: '';
+  position: absolute;
+  left: 0.5em; top: 0.78em;
+  width: 0.7em; height: 0.7em;
+  background: linear-gradient(135deg, #ff6a00 60%, #ee0979 100%);
+  border-radius: 50%;
+  box-shadow: 0 1px 6px rgba(238,9,121,0.07);
+}
+
+/* ol 리스트 번호 커스텀 */
+ol.recruit-list {
+  counter-reset: recruitnum;
+}
+ol.recruit-list li {
+  padding-left: 2.2em;
+}
+ol.recruit-list li::before {
+  content: counter(recruitnum) '.';
+  counter-increment: recruitnum;
+  background: none;
+  color: #ff6a00;
+  font-weight: bold;
+  font-size: 1.13em;
+  left: 0.2em; top: 0.7em;
+}
+
+/* 지원 버튼 */
+.recruitment-section .btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  font-size: 1.19rem;
+  font-weight: 700;
+  padding: 1em 3.2em;
+  border-radius: 2em;
+  box-shadow: 0 6px 18px rgba(238,9,121,0.09);
+  margin-top: 0.7em;
+  transition: background 0.22s, box-shadow 0.22s, transform 0.22s;
+  letter-spacing: 0.01em;
+  outline: none;
+}
+.recruitment-section .btn:hover,
+.recruitment-section .btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  box-shadow: 0 10px 32px rgba(238,9,121,0.13);
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* 스크롤 페이드 애니메이션 (기존과 자연스럽게 연결) */
+.recruitment-section [data-scroll="fade"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1);
+}
+.recruitment-section [data-scroll="fade"].visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* 반응형 */
+@media (max-width: 767px) {
+  .recruitment-section {
+    padding: 2.3rem 0 1.6rem 0;
+    margin: 1.2rem 0 1rem 0;
+    border-radius: 1.2rem;
+  }
+  .recruitment-section .section-title {
+    font-size: 1.45rem;
+    padding-bottom: 0.7rem;
+  }
+  .recruitment-section p {
+    font-size: 1rem;
+    padding: 0.7rem 0.8rem;
+  }
+  .recruitment-section h3 {
+    font-size: 1.08rem;
+    padding-left: 8px;
+  }
+  .recruit-list {
+    font-size: 0.97rem;
+  }
+  .recruitment-section .btn {
+    font-size: 1rem;
+    padding: 0.8em 1.8em;
+  }
+}
+
 
 /* -------------------------------------------------
    미디어 쿼리 (반응형)
