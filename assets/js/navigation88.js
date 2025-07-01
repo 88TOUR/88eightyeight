@@ -2,7 +2,6 @@
  * Navigation88 Controller
  * 반응형 네비게이션 및 헤더 동작 관리
  */
-
 class Navigation88 {
   constructor() {
     this.header = document.querySelector('.header');
@@ -13,12 +12,16 @@ class Navigation88 {
     this.isMenuOpen = false;
     this.lastScrollY = window.scrollY;
     this.scrollDirection = 'up';
-    
-    // 스로틀링을 위한 RAF ID
     this.rafId = null;
   }
 
   init() {
+    // 필수 요소가 없으면 실행하지 않음
+    if (!this.header || !this.nav || !this.menuToggle) {
+      // 콘솔에 안내 메시지 출력(선택)
+      // console.warn('Navigation88: 필수 DOM 요소가 없어 초기화하지 않습니다.');
+      return;
+    }
     this.bindEvents();
     this.setupSmoothScroll();
     this.updateActiveLink();
@@ -36,7 +39,7 @@ class Navigation88 {
 
     // 메뉴 외부 클릭시 닫기
     document.addEventListener('click', (e) => {
-      if (this.isMenuOpen && !this.nav.contains(e.target)) {
+      if (this.isMenuOpen && this.nav && !this.nav.contains(e.target)) {
         this.closeMenu();
       }
     });
@@ -59,6 +62,9 @@ class Navigation88 {
         this.closeMenu();
       }
     });
+
+    // 윈도우 리사이즈 시 메뉴 닫기
+    window.addEventListener('resize', this.handleResize.bind(this));
   }
 
   /**
@@ -72,6 +78,7 @@ class Navigation88 {
    * 메뉴 열기
    */
   openMenu() {
+    if (!this.nav || !this.menuToggle) return;
     this.isMenuOpen = true;
     this.nav.classList.add('nav-open');
     this.menuToggle.classList.add('active');
@@ -91,6 +98,7 @@ class Navigation88 {
    * 메뉴 닫기
    */
   closeMenu() {
+    if (!this.nav || !this.menuToggle) return;
     this.isMenuOpen = false;
     this.nav.classList.remove('nav-open');
     this.menuToggle.classList.remove('active');
@@ -104,6 +112,7 @@ class Navigation88 {
    * 스크롤 헤더 처리
    */
   handleScroll() {
+    if (!this.header) return;
     const currentScrollY = window.scrollY;
     
     // 스크롤 방향 감지
@@ -133,13 +142,14 @@ class Navigation88 {
    * 부드러운 스크롤 설정
    */
   setupSmoothScroll() {
+    if (!this.navLinks || this.navLinks.length === 0) return;
     this.navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         const targetSection = document.querySelector(targetId);
         
-        if (targetSection) {
+        if (targetSection && this.header) {
           const headerHeight = this.header.offsetHeight;
           const targetOffset = targetSection.offsetTop - headerHeight - 20;
           
@@ -161,22 +171,22 @@ class Navigation88 {
    * 현재 섹션에 따른 활성 링크 업데이트
    */
   updateActiveLink() {
-  const path = location.pathname.replace(/\/$/, ''); // 맨 끝 슬래시 제거
-  this.navLinks.forEach(link => {
-    const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
-    if (linkPath === path) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-}
+    if (!this.navLinks || this.navLinks.length === 0) return;
+    const path = location.pathname.replace(/\/$/, ''); // 맨 끝 슬래시 제거
+    this.navLinks.forEach(link => {
+      const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
+      if (linkPath === path) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
 
   /**
    * 리사이즈 핸들러
    */
   handleResize() {
-    // 데스크톱에서 모바일 메뉴 닫기
     if (window.innerWidth > 768 && this.isMenuOpen) {
       this.closeMenu();
     }
@@ -192,5 +202,5 @@ class Navigation88 {
   }
 }
 
-// 전역 등록
+// 전역 등록 (다른 스크립트에서 사용할 수 있도록)
 window.Navigation88 = Navigation88;
