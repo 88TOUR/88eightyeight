@@ -64,7 +64,7 @@ class Navigation88 {
 
   openMenu() {
     if (!this.nav || !this.menuToggle) return;
-    this.isMenuOpen = false;
+    this.isMenuOpen = true;
     this.nav.classList.add('nav-open');
     const navUl = this.nav.querySelector('ul');
     navUl && navUl.classList.add('open');
