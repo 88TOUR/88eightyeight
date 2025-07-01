@@ -232,7 +232,7 @@ main { min-height: 80vh; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url('../images/hero/hero-pattern.svg') center/cover no-repeat;
+  background: url('../images/hero/tiny-checkers.svg') center/cover no-repeat;
   opacity: .06;
   pointer-events: none;
 }

@@ -5,49 +5,95 @@
   position: relative;
   padding: 10rem 0 8rem;
   text-align: center;
-  background: linear-gradient(135deg, #ffd0ed 0%, #a9feff 100%);
-  color: #fff;
+  
+  background-image:
+    linear-gradient(135deg, #f3f4f8 0%, #e0ecff 60%, #b8aee0 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23b8aee0' fill-opacity='0.15'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+  background-blend-mode: lighten;
+  background-size: 100% 100%, 8px 8px;
+  background-repeat: no-repeat, repeat;
+  color: #23213a;
   overflow: hidden;
 }
 
-.hero h1 span.placeholder {
+
+.hero-section .hero-content {
   position: relative;
-  color: var(--color-accent);
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.hero h1 span.placeholder::after {
-  content: '';
-  position: absolute;
-  top: 0; right: -8px;
-  width: 2px; height: 100%;
-  background: var(--color-accent);
-  animation: blink 1s step-start infinite;
+.typing-title {
+  font-family: var(--font-en), 'Poppins', 'Noto Sans KR', sans-serif;
+  font-size: clamp(2.2rem, 5vw + 1rem, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #23213a;
+  margin-bottom: 2.2rem;
+  line-height: 1.18;
 }
-
-.hero p {
-  margin-top: 1.2rem;
-  font-size: 1.1rem;
-}
-
-.hero .btn {
-  margin-top: 2.2rem;
-  background: #fff;
-  color: var(--color-primary);
-}
-
-.hero .btn:hover { background: var(--color-secondary); color: #fff; }
-
-/* style.css 또는 hero.css의 맨 아래쪽에 추가 */
 .typing-title #typed-word {
-  border-right: 2px solid #6c5ce7;
-  padding-right: 4px;
-  animation: blink-cursor 0.8s steps(1) infinite;
+  color: #6c5ce7;
+  border-right: 2.5px solid #6c5ce7;
+  padding-right: 6px;
+  animation: blink-cursor 0.9s steps(1) infinite;
 }
 @keyframes blink-cursor {
   0%, 100% { border-color: #6c5ce7; }
   50% { border-color: transparent; }
 }
+
 #subtitle {
   opacity: 0;
+  font-size: 1.23rem;
+  color: #6c5ce7;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 2.2rem auto 0 auto;
+  max-width: 100%;
+  box-shadow: none;
   transition: opacity 1.5s cubic-bezier(.23,1,.32,1);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+
+.hero-section .btn {
+  margin-top: 2.8rem;
+  background: linear-gradient(90deg, #a29bfe 0%, #6c5ce7 100%);
+  color: #fff;
+  border-radius: 0.6rem;
+  font-weight: bold;
+  font-size: 1.12rem;
+  padding: 1.1rem 2.4rem;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 4px 24px rgba(108,92,231,0.09);
+}
+.hero-section .btn:hover {
+  background: linear-gradient(90deg, #6c5ce7 0%, #a29bfe 100%);
+  color: #fff;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 5.2rem 0 3.5rem;
+    min-height: 45vh;
+  }
+  .typing-title {
+    font-size: 1.7rem;
+    margin-bottom: 1.2rem;
+  }
+  #subtitle {
+    font-size: 1rem;
+    padding: 0.8rem 1.1rem;
+    margin-top: 1.2rem;
+  }
+  .hero-section .btn {
+    padding: 0.8rem 1.4rem;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
 }

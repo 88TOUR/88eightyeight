@@ -163,20 +163,23 @@ function includeHTML(callback) {
 
 // 호출 예시
 includeHTML(() => {
-  console.log('✅ All includes finished');
+  // ... 기존 초기화 코드 ...
   new Navigation88().init();
   new Animations().init();
 
-  // type-hangul 타이핑 애니메이션은 여기서 실행!
-  TypeHangul.type('#typed-word', {
-    text: '쉼', // 원하는 단어로 변경
-    intervalType: 70,
-    humanize: 0.4
-  });
-  document.querySelector('#typed-word').addEventListener('th.endType', function() {
-    document.getElementById('subtitle').style.opacity = 1;
-  });
+  // 1초(1000ms) 후에 타이핑 애니메이션 시작
+  setTimeout(() => {
+    TypeHangul.type('#typed-word', {
+      text: '쉼',
+      intervalType: 70,
+      humanize: 0.4
+    });
+    document.querySelector('#typed-word').addEventListener('th.endType', function() {
+      document.getElementById('subtitle').style.opacity = 1;
+    });
+  }, 2500); // 1000ms = 1초
 });
+
 </script>
 </body>
 </html>
