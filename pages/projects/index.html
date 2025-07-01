@@ -5,26 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>프로젝트 – 88 기획 동아리</title>
   <!-- 전역 스타일 -->
-  <link rel="stylesheet" href="../assets/css/default.css" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/responsive.css" />
+  <link rel="stylesheet" href="/assets/css/default.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
   <!-- 컴포넌트 스타일 -->
-  <link rel="stylesheet" href="../assets/css/components/navigation.css" />
-  <link rel="stylesheet" href="../assets/css/components/project-cards.css" />
-  <link rel="stylesheet" href="../assets/css/components/footer.css" />
+  <link rel="stylesheet" href="/assets/css/components/navigation.css" />
+  <link rel="stylesheet" href="/assets/css/components/project-cards.css" />
+  <link rel="stylesheet" href="/assets/css/components/footer.css" />
 </head>
 <body>
   <!-- 헤더/네비게이션 -->
-  <div data-include="../../components/header.html"></div>
+  <div data-include="/components/header.html"></div>
 
   <main class="section projects-section">
     <div class="container">
       <h2 class="section-title text-center">프로젝트</h2>
       <div class="projects-grid" data-animate="fade" data-delay="200">
         <!-- 여행 프로젝트 카드 -->
-        <a href="travel/index.html" class="project-card">
+        <a href="/travel/index.html" class="project-card">
           <div class="card-front">
-            <img src="../assets/images/projects/travel/travel-thumb.jpg" alt="삶에 쉼을 더하다" />
+            <img src="/assets/images/projects/travel/travel-thumb.jpg" alt="삶에 쉼을 더하다" />
             <div class="overlay">
               <h3>삶에 쉼을 더하다</h3>
               <p>AI 기반 여행 코스 추천 서비스</p>
@@ -32,9 +32,9 @@
           </div>
         </a>
         <!-- 음악 프로젝트 카드 -->
-        <a href="music/index.html" class="project-card">
+        <a href="/music/index.html" class="project-card">
           <div class="card-front">
-            <img src="../assets/images/projects/music/music-thumb.jpg" alt="삶에 음을 더하다" />
+            <img src="/assets/images/projects/music/music-thumb.jpg" alt="삶에 음을 더하다" />
             <div class="overlay">
               <h3>삶에 음을 더하다</h3>
               <p>개인화 음악 추천 시스템</p>
@@ -42,9 +42,9 @@
           </div>
         </a>
         <!-- 향후 프로젝트용 템플릿 카드 -->
-        <a href="templates/project-template.html" class="project-card">
+        <a href="/templates/project-template.html" class="project-card">
           <div class="card-front">
-            <img src="../assets/images/projects/future-projects/future-thumb.jpg" alt="Coming Soon" />
+            <img src="/assets/images/projects/future-projects/future-thumb.jpg" alt="Coming Soon" />
             <div class="overlay">
               <h3>새로운 프로젝트</h3>
               <p>추가될 프로젝트를 기대해 주세요</p>
@@ -56,63 +56,59 @@
   </main>
 
   <!-- 푸터 -->
-  <div data-include="../../components/footer.html"></div>
+  <div data-include="/components/footer.html"></div>
 
   <!-- 외부 라이브러리 -->
-  <script src="../assets/js/libs/jquery.min.js"></script>
-  <script src="../assets/js/libs/wow.min.js"></script>
-  <script src="../assets/js/libs/slick.min.js"></script>
-  <script src="../assets/js/libs/anime.min.js"></script>
-  <script src="../assets/js/libs/particles.min.js"></script>
+  <script src="/assets/js/libs/jquery.min.js"></script>
+  <script src="/assets/js/libs/wow.min.js"></script>
+  <script src="/assets/js/libs/slick.min.js"></script>
+  <script src="/assets/js/libs/anime.min.js"></script>
+  <script src="/assets/js/libs/particles.min.js"></script>
   <!-- 내부 스크립트 -->
-  <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/project-toggle.js"></script>
-  <script src="../assets/js/scroll-effects.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/project-toggle.js"></script>
+  <script src="/assets/js/scroll-effects.js"></script>
 
   <!-- include HTML components -->
-<script>
-function includeHTML(callback) {
-  const elements = document.querySelectorAll('[data-include]');
-  let loaded = 0;
-  if (elements.length === 0) {
-    callback?.(); // 없으면 바로 callback 실행
-    return;
+  <script>
+  function includeHTML(callback) {
+    const elements = document.querySelectorAll('[data-include]');
+    let loaded = 0;
+    if (elements.length === 0) {
+      callback?.();
+      return;
+    }
+
+    elements.forEach(function (el) {
+      const file = el.getAttribute('data-include');
+      fetch(file)
+        .then(res => res.text())
+        .then(html => {
+          const temp = document.createElement('div');
+          temp.innerHTML = html;
+          while (temp.firstChild) {
+            el.parentNode.insertBefore(temp.firstChild, el);
+          }
+          el.remove();
+          loaded++;
+          if (loaded === elements.length) {
+            callback?.();
+          }
+        })
+        .catch(err => {
+          console.error(`Include failed: ${file}`, err);
+          loaded++;
+          if (loaded === elements.length) {
+            callback?.();
+          }
+        });
+    });
   }
 
-  elements.forEach(function (el) {
-    const file = el.getAttribute('data-include');
-    fetch(file)
-      .then(res => res.text())
-      .then(html => {
-        const temp = document.createElement('div');
-        temp.innerHTML = html;
-        while (temp.firstChild) {
-          el.parentNode.insertBefore(temp.firstChild, el);
-        }
-        el.remove();
-        loaded++;
-        if (loaded === elements.length) {
-          callback?.(); // 모두 삽입 완료 시 callback 실행
-        }
-      })
-      .catch(err => {
-        console.error(`Include failed: ${file}`, err);
-        loaded++;
-        if (loaded === elements.length) {
-          callback?.();
-        }
-      });
+  includeHTML(() => {
+    console.log('✅ All includes finished');
+    new Navigation88().init();
   });
-}
-
-// 호출 예시
-includeHTML(() => {
-  console.log('✅ All includes finished');
-  new Navigation88().init(); // 이 시점에 .nav, .project-card 등 접근 가능
-});
-</script>
-
-
-
+  </script>
 </body>
 </html>
