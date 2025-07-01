@@ -58,7 +58,7 @@ class ProjectToggle {
   }
 
   init() {
-    this.bindEvents(e);
+    this.bindEvents();
     this.createModal();
     this.add3DEffect();
   }
@@ -66,7 +66,7 @@ class ProjectToggle {
   /**
    * 이벤트 바인딩
    */
-  bindEvents(e) {
+  bindEvents() {
     // 모달이 열려 있으면 카드 클릭 무시
     if (this.isModalOpen && !e.target.classList.contains('modal-close') && !e.target.classList.contains('modal-overlay')) {
       return;

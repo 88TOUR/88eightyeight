@@ -22,7 +22,7 @@ class Navigation88 {
       // console.warn('Navigation88: 필수 DOM 요소가 없어 초기화하지 않습니다.');
       return;
     }
-    this.bindEvents(e);
+    this.bindEvents();
     this.setupSmoothScroll();
     this.updateActiveLink();
   }
@@ -30,7 +30,7 @@ class Navigation88 {
   /**
    * 이벤트 바인딩
    */
-  bindEvents(e) {
+  bindEvents() {
     // 햄버거 메뉴 토글
     this.menuToggle?.addEventListener('click', (e) => {
       e.stopPropagation();
