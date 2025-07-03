@@ -45,10 +45,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: #fff;
-  text-shadow:
-    0 4px 24px rgba(50,50,50,0.18),   /* 소프트 그림자 */    /* 진한 그림자 */
-    -2px -2px 0.5px #fff;                     /* 밝은 엣지 */
+  color: #fff;                    /* 밝은 엣지 */
   margin-bottom: 1rem;
   line-height: 1.13;
   opacity: 0;
