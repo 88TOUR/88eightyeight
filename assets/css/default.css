@@ -1,86 +1,85 @@
 /* -------------------------------------------------
-   글로벌 변수 & 리셋
+   글로벌 변수 & 리셋  ─  Black • White • Sand
    ------------------------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --color-primary: #4834d4;
-  --color-secondary: #a29bfe;
-  --color-accent: #fd79a8;
-  --color-bg: #f9f9fc;
-  --color-bg-alt: #efecf9;
-  --color-dark: #2d3436;
-  --color-gray: #636e72;
-  --color-gradient: linear-gradient(90deg, #a29bfe 0%, #4834d4 100%);
-  --shadow-card: 0 10px 32px rgba(108,92,231,0.13);
-  --shadow-strong: 0 16px 48px rgba(108,92,231,0.17);
-  --radius-sm: 10px;
-  --radius-md: 22px;
+  /* 프라이머리: 블랙  ─  세컨더리: 짙은 그레이  ─  포인트: 샌드-골드 */
+  --color-primary: #0d0d0d;            /* 타이틀·포인트 블랙 */
+  --color-secondary: #3c3c3f;          /* 본문 짙은 그레이 */
+  --color-accent: #c6a56a;             /* 샌드-골드 포인트 */
+  --color-bg: #ffffff;                 /* 기본 배경 화이트 */
+  --color-bg-alt: #f5f5f7;             /* 옅은 회색 섹션 */
+  --color-dark: var(--color-primary);  /* 동일 블랙 */
+  --color-gray: #8d8d92;               /* 서브텍스트 회색 */
+
+  /* 블랙→다크그레이 그라디언트 + 골드 호버 컬러 */
+  --color-gradient: linear-gradient(90deg,#0d0d0d 0%,#3c3c3f 100%);
+
+  /* 그림자(블랙-투명) */
+  --shadow-card: 0 6px 18px rgba(0,0,0,.08);
+  --shadow-strong: 0 12px 36px rgba(0,0,0,.12);
+
+  /* radius 및 타이포 그대로 */
+  --radius-sm: 12px;
+  --radius-md: 24px;
   --radius-lg: 48px;
   --font-kr: 'Noto Sans KR', sans-serif;
-  --font-en: --font-en: 'Poppins', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-en: 'Poppins','Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
   --container-max: 1200px;
 }
 
-*,
-*::before,
-*::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ====== 리셋 & 기본 ====== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
-html, body {
-  scroll-behavior: smooth;
-  font-family: var(--font-kr);
-  color: var(--color-dark);
-  background: var(--color-bg);
-  line-height: 1.7;
-  min-height: 100vh;
-  transition: background 0.4s;
-}
-
-.container {
-  width: 90%;
-  max-width: var(--container-max);
-  margin: 0 auto;
+html,body{
+  scroll-behavior:smooth;
+  font-family:var(--font-kr);
+  color:var(--color-secondary);
+  background:var(--color-bg);
+  line-height:1.7;
+  min-height:100vh;
+  transition:background .3s;
+  -webkit-font-smoothing:antialiased;
 }
 
-.section {
-  padding: 6rem 0;
-  position: relative;
+.container{width:90%;max-width:var(--container-max);margin:0 auto;}
+
+.section{padding:6rem 0;position:relative;}
+.section:nth-child(even){background:var(--color-bg-alt);}
+
+.text-center{text-align:center;}
+.text-right{text-align:right;}
+
+/* ====== 버튼 ====== */
+.btn,.btn-accent{
+  display:inline-block;
+  padding:1rem 2.6rem;
+  border-radius:var(--radius-sm);
+  background:var(--color-gradient);
+  color:#fff;
+  font-weight:600;
+  font-size:1.1rem;
+  letter-spacing:.02em;
+  box-shadow:0 4px 16px rgba(0,0,0,.06);
+  transition:background .25s,box-shadow .25s,transform .2s;
+  border:none;
+  cursor:pointer;
+  margin-top:1.3rem;
+  text-decoration:none;
+  min-height:44px;
 }
-.section:nth-child(even) {
-  background: var(--color-bg-alt);
+.btn:hover{
+  background:linear-gradient(90deg,#3c3c3f 0%,#0d0d0d 100%);
+  box-shadow:var(--shadow-strong);
+  transform:translateY(-2px);
+}
+.btn-accent{
+  background:var(--color-accent);
+  color:#fff;
+}
+.btn-accent:hover{
+  background:#b99553;
 }
 
-.text-center { text-align: center; }
-.text-right { text-align: right; }
-
-/* 버튼 */
-.btn {
-  display: inline-block;
-  padding: 1rem 2.6rem;
-  border-radius: var(--radius-sm);
-  background: var(--color-gradient);
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.1rem;
-  letter-spacing: 0.03em;
-  box-shadow: 0 4px 16px rgba(108,92,231,0.08);
-  transition: background .3s, box-shadow .3s, transform .2s;
-  border: none;
-  cursor: pointer;
-  margin-top: 1.3rem;
-}
-.btn:hover {
-  background: linear-gradient(90deg, #fd79a8 0%, #4834d4 100%);
-  box-shadow: 0 8px 32px rgba(253,121,168,0.15);
-  transform: scale(1.06);
-}
-
-.btn-accent {
-  background: var(--color-accent);
-  color: #fff;
-}
-.btn-accent:hover {
-  background: var(--color-primary);
-}
-
-.hidden { display: none !important; }
+.hidden{display:none!important;}

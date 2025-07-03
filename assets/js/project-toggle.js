@@ -41,8 +41,8 @@ class ProjectToggle {
         image: 'assets/images/projects/music/music-hero.jpg'
       },
       '맛': {
-        title: '삶에 맛을 더하다',
-        subtitle: '나만의 맛을 찾아서',
+        title: '삶에 색을 더하다',
+        subtitle: '나만의 색을 찾아서',
         description: '개인의 건강 정보와 취향을 고려한 맞춤형 요리 레시피 및 식당 추천 서비스입니다.',
         features: [
           '건강 상태 기반 레시피 추천',

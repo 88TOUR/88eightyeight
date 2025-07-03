@@ -1,8 +1,3 @@
-/**
- * 88 Club Website - Main Controller
- * 전역 초기화 및 모듈 통합 관리
- */
-
 class App {
   constructor() {
     this.modules = new Map();
@@ -18,14 +13,9 @@ class App {
     };
   }
 
-  /**
-   * 애플리케이션 초기화
-   */
   async init() {
     if (this.isInitialized) return;
-
     try {
-      // DOM 준비 확인
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => this.bootstrap());
       } else {
@@ -36,9 +26,6 @@ class App {
     }
   }
 
-  /**
-   * 모듈 부트스트랩
-   */
   bootstrap() {
     this.log('🚀 Initializing 88 Club Website...');
 
@@ -59,16 +46,60 @@ class App {
       }
     });
 
+    // 히어로 애니메이션 초기화
+    this.initHeroAnimations();
+
     this.setupGlobalEvents();
     this.isInitialized = true;
     this.log('🎉 App initialized successfully');
   }
 
-  
-
   /**
-   * 전역 이벤트 설정
+   * 히어로 섹션 등장 애니메이션 (타이틀, 서브타이틀, 버튼)
    */
+  initHeroAnimations() {
+    // DOMContentLoaded가 이미 보장됨
+    const title = document.querySelector('.typing-title');
+    const subtitle = document.querySelector('.sub-title');
+    const btn = document.querySelector('.hero-cta');
+
+    // 타이틀 등장
+    if (title) {
+      setTimeout(() => {
+        title.classList.add('visible');
+        // 서브타이틀 등장
+        setTimeout(() => {
+          if (subtitle) subtitle.classList.add('visible');
+          // 버튼 등장
+          setTimeout(() => {
+            if (btn) {
+              btn.style.opacity = '0';
+              btn.style.transform = 'translateY(30px)';
+              btn.style.transition = 'opacity 1s cubic-bezier(.77,0,.18,1), transform 1s cubic-bezier(.77,0,.18,1)';
+              setTimeout(() => {
+                btn.style.opacity = '1';
+                btn.style.transform = 'translateY(0)';
+              }, 50);
+            }
+          }, 400);
+        }, 450);
+      }, 350);
+    }
+
+    // particles.js 배경 초기화 (이미 적용되어 있다면 생략)
+    if (window.particlesJS && document.getElementById('particles-js')) {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 35, density: { enable: true, value_area: 800 } },
+          color: { value: '#7f53ff' },
+          line_linked: { enable: true, color: '#7f53ff' },
+          move: { speed: 1.8 }
+        },
+        retina_detect: true
+      });
+    }
+  }
+
   setupGlobalEvents() {
     // 성능 최적화된 리사이즈 핸들러
     let resizeTimer;
@@ -98,31 +129,20 @@ class App {
     });
   }
 
-  /**
-   * 에러 핸들링
-   */
   handleError(message, error) {
     console.error(`[88 Club] ${message}:`, error);
-    
-    // 프로덕션에서는 에러 리포팅 가능
     if (this.config.debug) {
       document.body.insertAdjacentHTML('beforeend', 
         `<div class="error-toast">${message}</div>`);
     }
   }
 
-  /**
-   * 디버그 로깅
-   */
   log(message) {
     if (this.config.debug) {
       console.log(`[88 Club] ${message}`);
     }
   }
 
-  /**
-   * 모듈 가져오기
-   */
   getModule(name) {
     return this.modules.get(name);
   }
@@ -130,6 +150,4 @@ class App {
 
 // 전역 앱 인스턴스
 window.App88 = new App();
-
-// 자동 초기화
 window.App88.init();
