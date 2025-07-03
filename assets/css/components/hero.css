@@ -91,7 +91,7 @@
   letter-spacing: -0.01em;
 }
 @keyframes blink-cursor {
-  0%, 100% { border-color: #7e7e7e; }
+  0%, 100% { border-color: #cbae68; }
   50% { border-color: transparent; }
 }
 
