@@ -2,12 +2,9 @@
    헤더/네비게이션
    ------------------------------------------------- */
 .header{
-  position:sticky;top:0;z-index:100;width:100%;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:saturate(180%) blur(20px);
-  transition:transform .6s cubic-bezier(.23,1,.32,1),
-             background .35s ease,box-shadow .35s ease;
-  border-bottom:1px solid rgba(0,0,0,.06);
+  background: rgba(255, 255, 255, 0.92);          /* 반투명 블랙 */
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 2px 12px rgba(0,0,0,.55);
 }
 .nav{
   display:flex;align-items:center;justify-content:space-between;
@@ -16,8 +13,9 @@
 
 /* style.css의 헤더/네비게이션 섹션 아래에 추가 */
 .header--hidden{transform:translateY(-100%);}
-.header--scrolled{background:rgba(255,255,255,.96);box-shadow:0 2px 8px rgba(0,0,0,.08);}
-
+.header--scrolled{
+  background: rgba(13,13,13,.96);
+}
 .logo a{
   font-family:var(--font-en);
   font-size:2rem;font-weight:700;
